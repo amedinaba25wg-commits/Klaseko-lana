@@ -52,3 +52,43 @@ if(zenbakia_1%2 == 1) {
     erantzuna = "ez";
 }
 document.getElementById("ariketa_5").innerHTML = zenbakia_1 + " zenbakia " + erantzuna + " da zatigarria 2 zenbakiarekin";
+
+//Ariketa 6: Idatzi esaldi bat eskatzen duen programa bat non agertzen diren bokalak idazten dituen 
+let esaldia = prompt("Ariketa 6: Idatzi esaldi bat");
+let bokalak = "";
+let bokalKopurua = 0;
+for(i of esaldia) {
+  if(i == "a" || i == "A" || i == "e" || i == "E" || i == "i" || i == "I" || i == "o" || i == "O" || i == "u" || i == "U") {
+    bokalKopurua++;
+  }
+}
+
+document.getElementById("ariketa_6").innerHTML = "<td>" + esaldia + "</td><td>" + bokalKopurua + "</td>";
+
+//Ariketa 7: 7.	Idatzi zenbaki bat eskatzen duen programa bat, eta esan ea 2, 3, 5 edo 7 zenbakiz zatigarria den (lauretako batengatik bada, egiaztatu besterik ez da egin behar).
+zenbakia_1 = parseInt(prompt("Ariketa 7: Idatzi zenbaki bat"));
+let zatitzaile_array = ["Bai", "Bai", "Bai", "Bai"];
+if(zenbakia_1%2 != 0) {
+    zatitzaile_array[0] = "Ez";
+}
+if(zenbakia_1%3 != 0) {
+    zatitzaile_array[1] = "Ez";
+}
+if(zenbakia_1%5 != 0) {
+    zatitzaile_array[2] = "Ez";
+}
+if(zenbakia_1%7 != 0) {
+    zatitzaile_array[3] = "Ez";
+}
+html_kodea = "<td>" + zenbakia_1 + "</td>";
+for(i of zatitzaile_array) {
+    html_kodea += "<td>" + i + "</td>";
+}
+
+document.getElementById("ariketa_7").innerHTML = html_kodea;
+
+//Ariketa 8: 8.	Gehitu aurreko programari: esan diezagula zein zebakirengatik den zatigarria (zatigarriak diren zenbaki guztiak esan behar dira)
+//Jadanik eginda 7-arekin
+
+//Ariketa 9: zenbaki jakin baten zatitzaileak pantailan idatziko dituen programa bat
+zenbakia_1 = parseInt(prompt("Ariketa 9: Idatzi zenbaki bat"));
