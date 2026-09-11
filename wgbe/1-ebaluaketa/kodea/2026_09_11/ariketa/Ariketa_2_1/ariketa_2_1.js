@@ -92,3 +92,4 @@ document.getElementById("ariketa_7").innerHTML = html_kodea;
 
 //Ariketa 9: zenbaki jakin baten zatitzaileak pantailan idatziko dituen programa bat
 zenbakia_1 = parseInt(prompt("Ariketa 9: Idatzi zenbaki bat"));
+let zatitzaileak = [];
