@@ -93,3 +93,57 @@ document.getElementById("ariketa_7").innerHTML = html_kodea;
 //Ariketa 9: zenbaki jakin baten zatitzaileak pantailan idatziko dituen programa bat
 zenbakia_1 = parseInt(prompt("Ariketa 9: Idatzi zenbaki bat"));
 let zatitzaileak = [];
+for (let i = 1; i <= zenbakia_1; i++) {
+    if (zenbakia_1%i == 0) {
+        zatitzaileak.push(i);
+    }
+}
+let zatitzailea_esaldia = "<p>" + zenbakia_1 + " zenbakiaren zatitzaileak dira: ";
+for (let i of zatitzaileak) {
+    zatitzailea_esaldia += i + ", ";
+}
+zatitzailea_esaldia += "</p>";
+document.getElementById("ariketa_9").innerHTML = zatitzailea_esaldia;
+
+//Ariketa 10: 10.	Idatzi ezazu emandako bi zenbakiren zatitzaile komunak pantailan idatziko dituen programa bat
+zenbakia_1 = parseInt(prompt("Ariketa 10: Idatzi lehenengo zenbakia:"));
+zenbakia_2 = parseInt(prompt("Ariketa 10: Mesedez idatzi beste zenbaki bat:"));
+zatitzaileak = [];
+if (zenbakia_1 > zenbakia_2) {
+    for (i = 1; i <= zenbakia_2; i++) {
+        if(zenbakia_1 % i == 0 && zenbakia_2 % i == 0) {
+            zatitzaileak.push(i);
+        }
+    }
+}
+else {
+    for (i = 1; i <= zenbakia_1; i++) {
+        if(zenbakia_2 % i == 0 && zenbakia_1 % i == 0) {
+            zatitzaileak.push(i);
+        }
+    }
+}
+
+zatitzailea_esaldia = "<p>" + zenbakia_1 + " eta " + zenbakia_2 + " zenbakiak hurrengo zatitzaile komunak dauzkate: ";
+for (let i of zatitzaileak) {
+    zatitzailea_esaldia += i + ", ";
+}
+zatitzailea_esaldia += "</p>";
+
+document.getElementById("ariketa_10").innerHTML = zatitzailea_esaldia;
+
+//Ariketa 11: 11.	Idatzi ezazu zenbaki jakin bat lehena den adierazten digun programa bat (zenbaki lehena=zenbaki hori ez da zatigarria bera edo batekoaz ez bada)
+zenbakia_1 = parseInt(prompt("Ariketa 11: Mesedez idatzi zenbaki bat:"));
+let lehena_da = true;
+for(let i = 2; i < (zenbakia_1/2); i++) {
+    if( zenbakia_1 % i == 0) {
+        lehena_da = false;
+    }
+}
+
+if (lehena_da == true) {
+    document.getElementById("ariketa_11").innerHTML = "<p>" + zenbakia_1 + " zenbakia lehena da</p>";
+}
+else  {
+    document.getElementById("ariketa_11").innerHTML = "<p>" + zenbakia_1 + " zenbakia ez da lehena</p>";
+}
