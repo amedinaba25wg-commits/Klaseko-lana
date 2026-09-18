@@ -55,3 +55,47 @@ function a_kopurua(katea) {
 a_kopurua(katea);
 
 //Ariketa 4: 4.	Pisuak sartzeko eskatzen duen programa, batura 200 kg-tik gorakoa izan arte
+
+alert("4. Ariketa, pisuak sartu kg-etan batura 200kg izan arte");
+
+function pisuak_200_arte () {
+    pisua = 0;
+    while(pisua < 200) {
+        pisua += parseInt(prompt("[Ariketa 4] Orain arteko pisua: " + pisua + "kg-koa da, mesedez sartu pisu gehiago"));
+        if(pisua >= 200) {
+            alert("[Ariketa 4] oraingo pisua " + pisua + "kg-koa da, 200kg-tik pasa denez ariketa bukatu da");
+        }
+        else {
+            alert("[Ariketa 4] orain arte pisua ez da 200kg-ra iritsi, segi pisua gehitzen");
+        }
+    }
+    document.getElementById("erantzuna4").innerHTML = "<p>Ariketa bukatuta 200kg baino gehiago lortu dira</p>";
+}
+
+pisuak_200_arte();
+
+//Ariketa 5: 5.	Teklatutik zenbakiak onartu 0 sartu arte, eta bistaratu sekuentzian zenbat zenbaki bikoiti eta bakoiti sartu diren.
+alert("Ariketa 5: Sartu zenbakiak 0 arte, gero kontatzeko zenbat bakoiti eta bikoiti");
+
+function zenbat_bakoiti_bikoiti() {
+    let zero_da = false;
+    let bakoiti = 0;
+    let bikoiti = 0;
+    while(!zero_da) {
+        let zenbakia = parseInt(prompt("[Ariketa 5] Sartu zenbaki bat:"));
+        if (zenbakia == 0) {
+            zero_da = true;
+        }
+        else {
+            if (zenbakia % 2 == 0) {
+                bikoiti++;
+            }
+            else {
+                bakoiti++;
+            }
+        }
+    }
+    document.getElementById("erantzuna5").innerHTML = "<p>Zenbaki bikoiti eta bakoitien kopurua:</p><ul><li>Bakoitiak: " + bakoiti + "</li><li>Bikoitiak: " + bikoiti + "</li></ul>";
+}
+
+zenbat_bakoiti_bikoiti();
