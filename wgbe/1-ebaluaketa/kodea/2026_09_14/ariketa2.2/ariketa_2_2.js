@@ -152,3 +152,11 @@ function zenbaki_baten_zatitzaileak() {
 }
 
 zenbaki_baten_zatitzaileak();
+
+//Ariketa 8: 8.	Sartutako zenbakia perfektua den esango digun programa (Zenbaki bat perfektua da bere zatitzaileen baturaren berdina bada. Adibidez: 6, 28....)
+
+alert("Ariketa 8: Zenbaki bat sartu eta begiratu ea perfektua den ala ez");
+
+function zenbakia_perfektua() {
+    let zenbakia = prompt("[Ariketa 8] Sartu zenbaki bat konprobatzeko ea perfektua den ala ez: ");
+}
