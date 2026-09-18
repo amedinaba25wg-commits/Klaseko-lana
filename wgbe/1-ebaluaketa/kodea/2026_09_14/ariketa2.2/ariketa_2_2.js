@@ -99,3 +99,35 @@ function zenbat_bakoiti_bikoiti() {
 }
 
 zenbat_bakoiti_bikoiti();
+
+//Ariketa 6: 6.	Teklatu bidez zenbaki positiboak irakurri eta maximoa eta minimoa idatzi. Gelditu zero edo zenbaki negatibo bat irakurtzean.
+
+alert("Ariketa 6: Zenbaki positiboak sartu zero edo zenbaki negatibo bat sartu ezkero bukatzen da eta bistaratzen da maximoa eta minimoa");
+
+function zenbakiak_maximoak_minimoak () {
+    let maximoa = 0;
+    let minimoa = "ez";
+    let segi = true;
+    while(segi) {
+        zenbakia = parseInt(prompt("[Ariketa 6] Zenbaki bat sartu"));
+        if(zenbakia <= 0) {
+            segi = false;
+        }
+        else {
+            if(zenbakia > maximoa) {
+                maximoa = zenbakia;
+            }
+            if (minimoa == "ez") {
+                minimoa = zenbakia;
+            }
+            else {
+                if (minimoa > zenbakia) {
+                    minimoa = zenbakia;
+                }
+            }
+        }
+    }
+
+    document.getElementById("erantzuna6").innerHTML = "<p>Sartutako zenbakietatik minimoak eta maximoak:</p><ul><li>Minimoa: " + minimoa + "</li><li>Maximoa: " + maximoa + "</li></ul>";
+}
+zenbakiak_maximoak_minimoak();
