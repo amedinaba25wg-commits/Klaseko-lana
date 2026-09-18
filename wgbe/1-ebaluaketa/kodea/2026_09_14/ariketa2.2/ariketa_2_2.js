@@ -131,3 +131,24 @@ function zenbakiak_maximoak_minimoak () {
     document.getElementById("erantzuna6").innerHTML = "<p>Sartutako zenbakietatik minimoak eta maximoak:</p><ul><li>Minimoa: " + minimoa + "</li><li>Maximoa: " + maximoa + "</li></ul>";
 }
 zenbakiak_maximoak_minimoak();
+
+//Ariketa 7: 7.	Teklatu bidez zenbaki bat sartzeko eskatu eta haren zatitzaileak bistaratu
+
+alert("7. ariketa: zenbaki bat sartu eta honen zatitzaileak ikusi");
+
+function zenbaki_baten_zatitzaileak() {
+    zenbakia = prompt("[Ariketa 7] Idatzi zenbaki bat bere zatitzaileak bistaratzeko");
+    const zatitzaileak = new Array();
+    for(let i = 1; i <= zenbakia; i++) {
+        if(zenbakia % i == 0) {
+            zatitzaileak.push(i);
+        }
+    }
+    let katea = zenbakia + "zenbakiaren zatitzaileak honak hauek dira:";
+    for (let x of zatitzaileak) {
+        katea += x + ", ";
+    }
+    document.getElementById("erantzuna7").innerHTML = katea;
+}
+
+zenbaki_baten_zatitzaileak();
