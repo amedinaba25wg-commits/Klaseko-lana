@@ -158,5 +158,40 @@ zenbaki_baten_zatitzaileak();
 alert("Ariketa 8: Zenbaki bat sartu eta begiratu ea perfektua den ala ez");
 
 function zenbakia_perfektua() {
-    let zenbakia = prompt("[Ariketa 8] Sartu zenbaki bat konprobatzeko ea perfektua den ala ez: ");
+    let zenbakia = parseInt(prompt("[Ariketa 8] Sartu zenbaki bat konprobatzeko ea perfektua den ala ez: "));
+    batura = 0;
+    for (let i = 1; i < zenbakia; i++) {
+        if (zenbakia % i == 0) {
+            batura += i;
+        }
+    }
+    if (batura == zenbakia)  {
+        document.getElementById("erantzuna8").innerHTML = "<p>Sartutako zenbakia perfektua da, bikaina da</p>";
+    }
+    else {
+        document.getElementById("erantzuna8").innerHTML = "<p>Sartutako zenbakia ez da perfektua, desatsegina izan daiteke</p>";
+    }
 }
+
+zenbakia_perfektua();
+
+//Ariketa 9: M-ren lehen N zatitzaileak sortu
+//(Kontuan hartu zenbakiak dituen zatitzaile kopuru gehiago eska diezaguketela. Kasu horretan, posible direnak bistaratuko dira)
+
+alert("Ariketa 9: M zenbakiaren N zatitazileak bistartauko dira");
+
+function ariketa_9() {
+    let zenbakia1 = parseInt(prompt("[Ariketa 9] Idatzi M zenbakia"));
+    let zenbakia2 = parseInt(prompt("Idatzi N zenbakia"));
+    let html_katea = "<p>" + zenbakia1 + " zenbakiaren lehenengo zatitzaileak hauek dira: ";
+    for(let i = 1; i <= zenbakia1 && zenbakia2 > 0; i++) {
+        if(zenbakia1 % i == 0) {
+            html_katea += i + ",";
+            zenbakia2--;
+        }
+    }
+    html_katea += " dira</p>";
+    document.getElementById("erantzuna9").innerHTML = html_katea;
+}
+
+ariketa_9();
