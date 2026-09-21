@@ -1,0 +1,103 @@
+body {
+    background-color: #F3F2F1;
+    display: flex;
+    flex-direction: column;
+    border: solid #767676 1px;
+    max-width: 1640px;
+    justify-self: center;
+}
+/*
+Letra tamainak:
+*/
+h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+header {
+    border-bottom: solid #767676 1px;
+    display: flex;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    align-items: center;
+}
+header h3 {
+    font-size: 3rem;
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+header #logo img {
+    border-radius: 100%;
+    box-shadow: 10px 10px black;
+    width: 40px;
+    height: 40px;
+}
+nav {
+    border-bottom: solid #767676 1px;
+}
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+nav ul li {
+    border: solid #767676 1px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-size: 1.5rem;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+section {
+
+}
+section#contenedor {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    border-bottom: solid #767676 1px;
+}
+section#principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: solid #767676 1px;
+}
+section#principal article {
+    width: 100%;
+}
+section#principal article p {
+    width: 100%;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+aside h1 {
+    text-align: center;
+}
+aside article p {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+aside article::after {
+    display: block;
+    content: "";
+    width: calc(100% - 30px);
+    justify-self: center;
+    height: 1px;
+    position: relative;
+    background-color: #767676;
+}
+
+.embed-container {
+    width: calc(100% - 30px);
+}
