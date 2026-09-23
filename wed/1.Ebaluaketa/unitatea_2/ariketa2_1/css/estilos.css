@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     border: solid #767676 1px;
-    max-width: 1640px;
+    max-width: 1000px;
     justify-self: center;
 }
 /*
@@ -29,7 +29,7 @@ header h3 {
 }
 header #logo img {
     border-radius: 100%;
-    box-shadow: 10px 10px black;
+    box-shadow: 6px 6px 4px black;
     width: 40px;
     height: 40px;
 }
@@ -55,6 +55,13 @@ a {
     text-decoration: none;
     color: black;
 }
+a:hover {
+    color: #FFF2EE;
+}
+li:hover {
+    background-color: #FF6347;
+    
+}
 section {
 
 }
@@ -73,13 +80,16 @@ section#principal article {
     width: 100%;
 }
 section#principal article p {
-    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-align: justify;
 }
 
 aside {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
 }
 aside h1 {
     text-align: center;
@@ -87,6 +97,7 @@ aside h1 {
 aside article p {
     padding-left: 15px;
     padding-right: 15px;
+    text-align: justify;
 }
 aside article::after {
     display: block;
@@ -100,4 +111,10 @@ aside article::after {
 
 .embed-container {
     width: calc(100% - 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1 {
+    text-align: center;
 }
