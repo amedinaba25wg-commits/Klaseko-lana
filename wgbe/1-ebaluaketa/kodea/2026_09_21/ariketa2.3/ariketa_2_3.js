@@ -46,14 +46,14 @@ function ar2_zifra_kopurua(zenbakia) {
 function ariketa2() {
     let zenbakia = parseInt(prompt("[Ariketa 2] Zenbaki bat sartu eta honen zifra kopuruak batu egingo dira"));
     let digitoak = ar2_zifra_kopurua(zenbakia);
-    let zatitzeko_zenbakia = 10 ^ (digitoak -1);
+    let zatitzeko_zenbakia = 10 ** (digitoak -1);
     let batura = 0;
     let html_egitura = "<p>" + zenbakia + " zenbakia sartu da, digitoen batura hurrengoa da:<br>";
-    for(let i = zatitzeko_zenbakia; i >= 10; i/10) {
-        let digitoa = zenbakia / zatitzeko_zenbakia;
+    for(let i = zatitzeko_zenbakia; i >= 10; i/=10) {
+        let digitoa = Math.floor(zenbakia / i);
         html_egitura += digitoa + " + ";
         batura += digitoa;
-        zenbakia %= zatitzeko_zenbakia;
+        zenbakia %= i;
     }
     batura += zenbakia;
     html_egitura += zenbakia + " = " + batura + "</p>";
@@ -61,3 +61,28 @@ function ariketa2() {
 }
 
 ariketa2();
+
+//Ariketa 3: Zenbaki palindromoa
+/*
+Zenbaki bat eskatu eta atzekoz aurrera eta aurreraka berdina den adierazten duen programa.
+Adibidez: 1221 → palindromoa; 1234 → ez da palindromoa. 
+*/
+function ar3_zifra_kopurua(zenbakia) {
+    //funtzio honekin zenbaki baten zifra kopurua neurtuko da
+    let digitoak = 1;
+    while(zenbakia >= 10) {
+        digitoak++;
+        zenbakia /= 10;
+    }
+    return digitoak;
+}
+
+function ariketa3() {
+    alert("ariketa 3: Zenbaki bat eskatuko zaizu eta palindromoa den edo adierazko da");
+    let zenbakia = parseInt(prompt("[Ariketa 3] Zenbaki bat idatzi"));
+    let zifra_kopurua = ar3_zifra_kopurua(zenbakia);
+    for(let i = zifra_kopurua; i >= 1; i--) {
+        let zatitzailea = 10 ** (zifra_kopurua - 1);
+
+    }
+}
