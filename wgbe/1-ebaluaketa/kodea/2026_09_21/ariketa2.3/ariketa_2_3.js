@@ -167,3 +167,106 @@ function ariketa5() {
 }
 
 ariketa5();
+
+//Ariketa 6: Zatitzaile gehien dituen zenbakia
+/*
+Bi zenbaki eskatu eta bien artean zatitzaile gehien dituen zenbakia zein den adierazten duen programa.
+Zatitzaile kopurua ere bistaratuko du.
+Adibidez: 12 → 6 zatitzaile; 15 → 4 zatitzaile. 
+*/
+
+function ariketa6() {
+    alert("Ariketa 6: Bi zatitzaile eskatuko dira, eta bien artean zatitzaile gehien dituen zenbakia zein den adieraziko da.");
+    let zenbakia1 = parseInt(prompt("[Ariketa 6] Idatzi zenbaki bat"));
+    let zenbakia2 = parseInt(prompt("[Ariketa 6] Idatzi beste zenbaki bat"));
+    let zatitzaileak1 = new Array();
+    let zatitzaileak2 = new Array();
+    for(let i = 1; i <= zenbakia1; i++) {
+        if(zenbakia1 % i == 0) {
+            zatitzaileak1.push(i);
+        }
+    }
+    for (let i = 1; i <= zenbakia2; i++) {
+        if(zenbakia2 % i == 0) {
+            zatitzaileak2.push(i);
+        }
+    }
+    html_egitura = "<p>" + zenbakia1 + " zenbakia " + zatitzaileak1.length + " zatitzaile ditu, " + zenbakia2 + " zenbakia berriz " + zatitzaileak2.length + " zatitzaile ditu.<br>Beraz ";
+    if(zatitzaileak1.length > zatitzaileak2.length == true) {
+        html_egitura = html_egitura + zenbakia1 + " zenbakia " + zenbakia2 + " zenbakia baino zatitzaile gehiago ditu.</p>";
+    }
+    else if(zatitzaileak2.length > zatitzaileak1.length == true) {
+        html_egitura = html_egitura + zenbakia2 + " zenbakia " + zenbakia1 + " zenbakia baino zatitzaile gehiago ditu</p>";
+    }
+    else {
+        html_egitura = html_egitura + zenbakia1 + " zenbakia eta " + zenbakia2 + " zenbakia zatitzaile kopuru bera daukate";
+    }
+
+    html_egitura = html_egitura + "<ul><li><strong>" + zenbakia1 + " zenbakiaren zatitzaileak dira:</strong> 1";
+    for(let x in zatitzaileak1) {
+        if(zatitzaileak1[x] != 1) {
+            html_egitura = html_egitura + ", " + zatitzaileak1[x];
+        }
+    }
+    html_egitura = html_egitura + ".</li>";
+    html_egitura = html_egitura + "<li><strong>" + zenbakia2 + " zenbakiaren zatitzaileak dira:</strong> 1";
+    for(let x in zatitzaileak2) {
+        if(zatitzaileak2[x] != 1) {
+            html_egitura = html_egitura + ", " + zatitzaileak2[x];
+        }
+    }
+    html_egitura = html_egitura + ".</li>";
+    document.getElementById("erantzuna6").innerHTML = html_egitura;
+}
+
+ariketa6();
+
+//Ariketa 7: Zenbakien sekuentzia
+/*
+Zenbakiak teklatu bidez eskatu 0 sartu arte. Programak zenbaki hauen batura, batez bestekoa, maximoa eta minimo bistaratuko ditu.
+*/
+alert("Ariketa 7: Zenbakiak eskatuko dira 0 zenbakia sartu arte, ondoren zenbakien batezbestekoa, maximoa eta minimoa zenbat den jarriko da");
+function ariketa7() {
+    let batura = 0;
+    let minimoa = false;
+    let maximoa = false;
+    let zero_sartuta = false;
+    let kontagailua = 0;
+    html_egitura = "Sartutako zenbakiak dira: ";
+    while(!zero_sartuta) {
+        let zenbakia = parseInt(prompt("[Ariketa 7] Zenbakia bat sartu, 0 zenbakia sartu ezkero programa bukatuko da"));
+        if(zenbakia == 0) {
+            alert("[Ariketa 7] programan 0 bat sartu da, ondorioz ariketa bukatu da." + html_egitura);
+            zero_sartuta = true;
+        }
+        else {
+            batura += zenbakia;
+            if(!minimoa) {
+                minimoa = zenbakia;
+                maximoa = zenbakia;
+            }
+            else {
+                if(zenbakia < minimoa) {
+                    minimoa = zenbakia;
+                }
+                if(zenbakia > maximoa) {
+                    maximoa = zenbakia;
+                }
+            }
+            kontagailua++;
+            html_egitura = html_egitura + zenbakia + ", ";
+            alert("[Ariketa 7] Sartutako zenbakia ez da 0, berez programa segituko du. " + html_egitura);
+            let batez_bestekoa = batura / kontagailua;
+            alert("[Ariketa 7] Orain arteko datuak: maximoa: " + maximoa + ", minimoa: " + minimoa + ", batez bestekoa: " + batez_bestekoa + ", " + kontagailua + " zenbaki sartu dira orain arte");
+        }
+    }
+    let batez_bestekoa = batura / kontagailua;
+    html_egitura = "<p>" + html_egitura + "<br>Zenbakiak sartu ondoren hurrengo datuak dauzkagu:<ul><li><strong>Maximoa:</strong> " + maximoa;
+    html_egitura = html_egitura + ".</li><li><strong>Batezbestekoa:</strong> " + batez_bestekoa + ".</li>";
+    html_egitura = html_egitura + "<li><strong>Minimoa:</strong> " + minimoa + ".</li>";
+    html_egitura = html_egitura + "<li><strong>Sartutako zenbakien kopurua:</strong> " + kontagailua + ".</li></ul>";
+
+    document.getElementById("erantzuna7").innerHTML = html_egitura;
+}
+
+ariketa7();
