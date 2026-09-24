@@ -81,8 +81,53 @@ function ariketa3() {
     alert("ariketa 3: Zenbaki bat eskatuko zaizu eta palindromoa den edo adierazko da");
     let zenbakia = parseInt(prompt("[Ariketa 3] Zenbaki bat idatzi"));
     let zifra_kopurua = ar3_zifra_kopurua(zenbakia);
+    let digitoak = [];
     for(let i = zifra_kopurua; i >= 1; i--) {
-        let zatitzailea = 10 ** (zifra_kopurua - 1);
-
+        let zatitzailea = 10 ** (i - 1);
+        digitoak[zifra_kopurua - i] = Math.floor(zenbakia/zatitzailea);
+        zenbakia %= 10;
     }
+    let palindromoa = true;
+    for(let i = 0; i < zifra_kopurua; i++) {
+        if (digitoak[i] != digitoak[zifra_kopurua - i - 1]) {
+            palindromoa = false;
+        }
+    }
+    let html_egitura = palindromoa == true ? "<p>Zenbakia palindromoa da</p>" : "<p>Zenbakia ez da palíndromoa</p>";
+    document.getElementById("erantzuna3").innerHTML = html_egitura;
 }
+
+ariketa3();
+
+//Ariketa 4: Zenbaki perfektuen artean
+/*
+1etik 1000ra bitarteko zenbaki perfektu guztiak pantailan bistaratzen dituen programa.
+*/
+function ariketa4() {
+    let zenbaki_perfektuak = [];
+    let html_egitura = "<ul>";
+    for(let i = 1; i <= 100; i++) {
+        let zatitzaileak = [];
+        for(let j = 1; j < i || j == 1; j++) {
+            if(i % j == 0) {
+                zatitzaileak.push(j);
+            }
+        }
+        let batura = 0;
+        for (let x in zatitzaileak) {
+            batura += zatitzaileak[x];
+        }
+        if (batura == i) {
+                html_egitura = html_egitura + "<li>";
+            for (let x in zatitzaileak) {
+                html_egitura = html_egitura + zatitzaileak[x] + " + ";
+            }
+            html_egitura = html_egitura + " = " + i + "</li>";
+        }
+        
+    }
+    html_egitura = html_egitura + "</ul>";
+    document.getElementById("erantzuna4").innerHTML = html_egitura;
+}
+
+ariketa4();
