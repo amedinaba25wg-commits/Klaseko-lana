@@ -137,3 +137,21 @@ ariketa4();
 Erabiltzaileari bi zenbaki eskatu eta bien artean dauden zenbaki lehen guztiak bistaratzen dituen programa.
 Adibidez: 10 eta 20 → 11, 13, 17, 19. 
 */
+
+function ariketa5() {
+    alert("Ariketa 5: Bi zenbaki sartuko dira eta bien artean dauden zenbaki lehenak bistaratuko dira");
+    let zenbakia1 = parseInt(prompt("[Ariketa 5] Idatzi zanbaki bat"));
+    let zenbakia2 = parseInt(prompt("[Ariketa 5] idatzi beste zenbaki bat"));
+    if (zenbakia1 > zenbakia2) {
+        let laguntzakoa = zenbakia1;
+        zenbakia1 = zenbakia2;
+        zenbakia2 = laguntzakoa;
+    }
+    let zenbaki_lehenak = [];
+    for(let i = zenbakia1; i <= zenbakia2; i++) {
+        let zenbaki_lehena_da = true;
+        for(let j = 2; j < i; i++) {
+            
+        }
+    }
+}
