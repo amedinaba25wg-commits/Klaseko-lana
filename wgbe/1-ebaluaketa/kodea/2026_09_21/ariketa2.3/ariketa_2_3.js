@@ -131,3 +131,9 @@ function ariketa4() {
 }
 
 ariketa4();
+
+//Ariketa 5: Zenbaki lehenen artean
+/*
+Erabiltzaileari bi zenbaki eskatu eta bien artean dauden zenbaki lehen guztiak bistaratzen dituen programa.
+Adibidez: 10 eta 20 → 11, 13, 17, 19. 
+*/
