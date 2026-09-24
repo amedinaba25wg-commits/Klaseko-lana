@@ -150,8 +150,20 @@ function ariketa5() {
     let zenbaki_lehenak = [];
     for(let i = zenbakia1; i <= zenbakia2; i++) {
         let zenbaki_lehena_da = true;
-        for(let j = 2; j < i; i++) {
-            
+        for(let j = 2; j < i; j++) {
+            if(i % j == 0) {
+                zenbaki_lehena_da = false;
+            }
+        }
+        if (zenbaki_lehena_da) {
+            zenbaki_lehenak.push(i);
         }
     }
+    let html_egitura = "<p>" + zenbakia1 + " - " + zenbakia2 + " zenbakien artean hurrengo zenbaki lehenak daude:<br>";
+    for( x in zenbaki_lehenak) {
+        html_egitura = html_egitura + zenbaki_lehenak[x] + ", ";
+    }
+    document.getElementById("erantzuna5").innerHTML = html_egitura;
 }
+
+ariketa5();
