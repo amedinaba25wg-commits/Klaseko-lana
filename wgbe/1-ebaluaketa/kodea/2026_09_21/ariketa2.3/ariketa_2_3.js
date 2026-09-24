@@ -106,7 +106,7 @@ ariketa3();
 function ariketa4() {
     let zenbaki_perfektuak = [];
     let html_egitura = "<ul>";
-    for(let i = 1; i <= 100; i++) {
+    for(let i = 1; i <= 1000; i++) {
         let zatitzaileak = [];
         for(let j = 1; j < i || j == 1; j++) {
             if(i % j == 0) {
