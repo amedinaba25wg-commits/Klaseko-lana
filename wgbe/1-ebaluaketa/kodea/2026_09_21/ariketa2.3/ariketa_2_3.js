@@ -270,3 +270,104 @@ function ariketa7() {
 }
 
 ariketa7();
+
+//Ariketa 8: Zenbaki alderantzizkoa
+/*
+Zenbaki bat eskatu eta zenbaki hori alderantziz bistaratzen duen programa.
+Adibidez: 12345 -> 54321
+Ez erabili reverse().
+*/
+
+function ariketa8() {
+    alert("Ariketa 8: Zenbakia bat eskatuko da eta honen alderantzizkoa bistaratuko da");
+    let zenbakia = parseInt(prompt("[Ariketa 8] Zenbaki bat sartu alderantzizkoa ikusteko"));
+    //Lehendabizi digito kopurua lortu behar dugu
+    let digito_kop = 0;
+    let alderantzizkoa = 0;
+    zenbakia2 = zenbakia;
+    for(let i = 1; i <= zenbakia; i *= 10) {
+        digito_kop++;
+    }
+    let j = 1;
+    for(let i = 10 ** (--digito_kop); i >= 1; i /= 10) {
+        alderantzizkoa += Math.floor(zenbakia / i) % 10 * j;
+        j *= 10;
+    }
+    html_egitura = zenbakia + " zenbakiaren alderantzizkoa " + alderantzizkoa + " zenbakia da.";
+    alert(html_egitura);
+    html_egitura = "<p>" + html_egitura + "</p>";
+    document.getElementById("erantzuna8").innerHTML = html_egitura;
+}
+
+ariketa8();
+
+//Ariketa 9: Zenbaki bat beste baten multiploa den
+/*
+Bi zenbaki eskatu eta lehenengoa bigarrenaren multiploa den adierazi. Ondoren, hala bada, zenbatgarren multiploa den adierazi.
+Adibidez: 20 eta 5 → 20 5-en 4. multiploa da. 
+*/
+
+function ariketa9() {
+    alert("Ariketa 9: Bi zenbaki eskatuko dira, ikusiko da ea lehenengoa bigarrenaren multiplo bat den");
+    let zenbakia1 = parseInt(prompt("[Ariketa 9] Lehenengo zenbakia sartu"));
+    let zenbakia2 = parseInt(prompt("[Ariketa 9] Bigarren zenbakia sartu"));
+    kontagailua = 1;
+    if(zenbakia1 % zenbakia2 == 0) {
+        for(let i= 1; i < zenbakia2; i++) {
+            if(zenbakia1 % i == 0) {
+                kontagailua++;
+            }
+        }
+        html_egitura = zenbakia1 + " zenbakia " + zenbakia2 + " zenbakiaren multiplo bat da. " + zenbakia2 + " zenbakia " + zenbakia1 + " zenbakiaren " + kontagailua + ". zatitzailea da.";
+    }
+    else {
+        html_egitura = zenbakia1 + " zenbakia ez da " + zenbakia2 + " zenbakiaren multiploa.";
+    }
+    alert(html_egitura);
+    html_egitura = "<p>" + html_egitura + "</p>";
+    document.getElementById("erantzuna9").innerHTML = html_egitura;
+}
+
+ariketa9();
+
+//Ariketa 10: Aurreko eta ondorengo zenbaki lehenak.
+/*
+Programak zenbaki bat eskatuko du, eta zenbaki honen aurretik eta ondoren dauden zenbaki lehenak idatziko ditu. Adibidez, 16 sakatzen bada: Zenbaki lehenak 1,2,3,5,7,11,13,17,… 16ren aurretik 13 dago, eta ondoren 17. Zenbaki lehena baldin bada, 13 adibidez, 11 eta 17 erantzun beharko luke.
+*/
+
+function ariketa10() {
+    alert("Ariketa 10: Zenbaki bat sartu eta honen aurreko zenbaki lehena eta hurrengo zenbaki lehena bistaratuko dira");
+    let zenbakia = parseInt(prompt("[Ariketa 10] Zenbaki bat sartu"));
+    let aurrekoa = 1;
+    for(let i = 2; i < zenbakia; i++) {
+        let lehena_da = true;
+        for(let j = 2; j < i; j++) {
+            if(i % j == 0) {
+                lehena_da = false;
+            }
+        }
+        if(lehena_da) {
+            aurrekoa = i;
+        }
+    }
+    let hurrengoa = false;
+    let hurrengo_zenbakia = 0;
+    for(let i = zenbakia; !hurrengoa; i++) {
+        let lehena_da = true;
+        for(let j = 2; j < i; j++) {
+            if(i % j == 0) {
+                lehena_da = false;
+            }
+        }
+        if (lehena_da) {
+            hurrengoa = true;
+            hurrengo_zenbakia = i;
+
+        }
+    }
+    html_egitura = zenbakia + " zenbakiaren aurreko lehena " + aurrekoa + " zenbakia da eta hurrengo lehena " + hurrengo_zenbakia + " zenbakia da";
+    alert(html_egitura);
+    document.getElementById("erantzuna10").innerHTML = "<p>" + html_egitura + "</p>";
+}
+
+ariketa10();
