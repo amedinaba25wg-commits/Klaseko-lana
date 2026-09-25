@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariketa 4 String</title>
+</head>
+<body>
+    <center><h1>Ariketa 4 String</h1></center>
+    <h2>Enuntziatua</h2>
+    <ul>
+        <li>Izen abizenak eskatuko ditu, eta erabiltzaila sortuko du, formatu honekin:
+            <ul>
+                <li>Izenaren lehenengo letra + 1. abizena + 2. abizenaren 1. letra. (Abizen bakarra badu, izen abizen osoa)</li>
+                <li>2 abizenen 1. letra letra larriz izango da</li>
+                <li>Amaieran 3 zenbaki gehituko dira, izen eta abizen bakoitzaren luzera dena.</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>Erantzuna</h2>
+    <form>
+        Izena: <input type="text" id="izena"><br>
+        Abizena: <input typ="text" id="abizena"><br>
+        <button type="button" onclick="sortu()">Sortu erabiltzailea</button>
+    </form>
+    <div id="erantzuna"></div>
+
+    <script src="ariketa.js"></script>
+</body>
+</html>
