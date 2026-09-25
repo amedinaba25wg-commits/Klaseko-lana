@@ -36,13 +36,13 @@ function zenbat_falta_urtebetetzea(hilabetea, eguna) {
     let Gaur = new Date();
     html_egitura = "<p>Zure urtebetetzea igandean da hurrengo urteetan:</p><ul>";
     if(Urtebetetzea.getMonth() > Gaur.getMonth() || Urtebetetzea.getMonth() == Gaur.getMonth() && Urtebetetzea.getDate() >= Gaur.getDate()) {
-        if(Urtebetetzea.getDay() == 0) {
+        if(Urtebetetzea.getDay() == 6) {
             html_egitura = html_egitura + "<li>" + Gaur.getFullYear + "<li>";
         }
     }
     for(let i = Gaur.getFullYear() + 1; i < 2100; i++) {
         let Data = new Date(i, Urtebetetzea.getMonth(), Urtebetetzea.getDate());
-        if(Data.getDay() == 0) {
+        if(Data.getDay() == 6) {
             html_egitura = html_egitura + "<li>" + Data.getFullYear() + "</li>";
         }
     }
@@ -57,4 +57,50 @@ function inprimatu_urtebetetzeak() {
     eguna--;
     let html_egitura = zenbat_falta_urtebetetzea(hilabetea, eguna);
     document.getElementById("erantzuna2").innerHTML = html_egitura;
+}
+
+//Ariketa 3: Gaurko data formatu ezberdinetan:
+function gaurko_data() {
+    Data = new Date();
+    return Data;
+}
+
+function data_formatua1(Data) {
+    return Data.getFullYear() + "/" + (Data.getMonth() + 1) + "/" + Data.getDate();
+}
+
+function data_formatua2(Data) {
+        let hilabeteak = ['urtarrila', 'otsaila', 'martxoa', 'apirila', 'maiatza', 'ekaina',
+        'uztaila', 'abuztua', 'iraila', 'urria', 'azaroa', 'abendua'];
+        let hilabetea = hilabeteak[Data.getMonth()];
+    return Data.getFullYear() + "-eko " + hilabetea + " " + Data.getDate() + "a";
+}
+
+function data_formatua3(Data) {
+        let hilabeteak = ['urtarrila', 'otsaila', 'martxoa', 'apirila', 'maiatza', 'ekaina',
+        'uztaila', 'abuztua', 'iraila', 'urria', 'azaroa', 'abendua'];
+        let hilabetea = hilabeteak[Data.getMonth()];
+    return Data.getFullYear() + "-eko " + Data.getDate() + ". " + hilabetea;
+}
+
+function inprimatu_data(Data) {
+    let balioa = document.querySelector('input[name="formatua"]:checked').value;
+    let html_egitura = "<p>";
+    if(balioa == "formatua1") {
+        html_egitura = html_egitura + data_formatua1(Data);
+    }
+    else if (balioa == "formatua2") {
+        html_egitura = html_egitura + data_formatua2(Data);
+    }
+    else if (balioa == "formatua3") {
+        html_egitura = html_egitura + data_formatua3(Data);
+    }
+    else {
+        html_egitura = html_egitura + "Errore bat egon da";
+    }
+    html_egitura = html_egitura + "</p>";
+    document.getElementById("erantzuna3").innerHTML = html_egitura;
+}
+function ariketa3_funtzioa() {
+    inprimatu_data(gaurko_data());
 }
