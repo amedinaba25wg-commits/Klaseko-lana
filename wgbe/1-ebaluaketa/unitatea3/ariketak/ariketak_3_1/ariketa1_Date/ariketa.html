@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariketa 1</title>
+</head>
+<body>
+    <h1>Ariketa 1</h1>
+    <h2>Enuntziatua</h2>
+    <ul>
+        <li>Gaurtik kurtso amaieraarte falta diren egunak kontatzen ditu.</li>
+        <li>Zure urtebetetzea ( hilabetea eta eguna ) eskatzen du, eta hemendik 2100 urterarte, zure urtebetetzea igandean izango den urte guztiak itzuliko ditu.</li>
+        <li>Erabiltzaileak sartzen duen balioaren arabera, gaurko data formatu desberdinean inprimatuko du. Adibidez:
+            <ul>
+                <li>1: 2000/01/01</li>
+                <li>2: 2000eko urtarrilak 1a</li>
+                <li>3: Urtarrileko 2. ostirala</li>
+            </ul>
+        </li>
+    </ul>
+    <h3>Gaurtik kurtso bukaera arte</h3>
+    <div class="kurtsoa">
+        <div class="erantzuna1"></div>
+    </div>
+    
+
+    <h3>Urtebetetzea noiz den igandea gaurtik 2100 urtera arte</h3>
+    <form>
+        Hilabetea: <input type="number" id="urtebetetze_hilabetea">
+        Eguna: <input type="number" id="urtebetetze_eguna">
+        <button id="urtebetetzea" onclick="inprimatu_urtebetetzeak()">Kalkulatu</button>
+    </form>
+    <div id="erantzuna2"></div>
+
+    <script href="ariketa.js"></script>
+</body>
+</html>
