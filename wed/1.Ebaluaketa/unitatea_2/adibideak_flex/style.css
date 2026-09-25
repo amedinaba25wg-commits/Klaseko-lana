@@ -1,0 +1,16 @@
+.flexContainer {
+    display: flex;
+    background-color: tomato;
+    padding: 20px;
+    flex-direction: row;
+}
+.flexItem {
+    background-color: rgb(252, 2525, 250);
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+    flex-grow: 1;
+}
+.flexBerezi {
+    flex-grow: 7; /* Flex-grow egingo du proportzionala izatea */
+}
