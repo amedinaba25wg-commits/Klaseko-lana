@@ -35,21 +35,26 @@ function zenbat_falta_urtebetetzea(hilabetea, eguna) {
     let Urtebetetzea = new Date(Aurten.getFullYear(), hilabetea, eguna);
     let Gaur = new Date();
     html_egitura = "<p>Zure urtebetetzea igandean da hurrengo urteetan:</p><ul>";
-    if(Urtebetetzea.getMonth() > Gaur.getMonth() || Urtebetetzea.getMonth() == Gaur.getMonth() && Urtebetetzea.getDay >= Gaur.getMonth()) {
-        if(Urtebetetzea.getDay() == 6) {
-            html_egitura = html_egitura + "<li>" + Urtebetetzea.getDate() + "<li>";
+    if(Urtebetetzea.getMonth() > Gaur.getMonth() || Urtebetetzea.getMonth() == Gaur.getMonth() && Urtebetetzea.getDate() >= Gaur.getDate()) {
+        if(Urtebetetzea.getDay() == 0) {
+            html_egitura = html_egitura + "<li>" + Gaur.getFullYear + "<li>";
         }
     }
     for(let i = Gaur.getFullYear() + 1; i < 2100; i++) {
-        let Data = new Date(i, Urtebetetzea.getMonth, Urtebetetzea.getDay())
+        let Data = new Date(i, Urtebetetzea.getMonth(), Urtebetetzea.getDate());
+        if(Data.getDay() == 0) {
+            html_egitura = html_egitura + "<li>" + Data.getFullYear() + "</li>";
+        }
     }
     html_egitura = html_egitura + "</ul>";
     return html_egitura;
 }
 
 function inprimatu_urtebetetzeak() {
-    let hilabetea = document.getElementById("urtebetetze_hilabetea");
-    let eguna = document.getElementById("urtebetetze_eguna").Value;
+    let hilabetea = document.getElementById("urtebetetze_hilabetea").value;
+    hilabetea--;
+    let eguna = document.getElementById("urtebetetze_eguna").value;
+    eguna--;
     let html_egitura = zenbat_falta_urtebetetzea(hilabetea, eguna);
     document.getElementById("erantzuna2").innerHTML = html_egitura;
 }
