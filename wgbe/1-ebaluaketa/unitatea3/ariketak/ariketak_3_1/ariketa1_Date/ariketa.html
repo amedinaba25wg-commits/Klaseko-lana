@@ -32,6 +32,17 @@
         <button type="button" id="urtebetetzea" onclick="inprimatu_urtebetetzeak()">Kalkulatu</button>
     </form>
     <div id="erantzuna2"></div>
+    <h3>Gaurko data formatua ezberdinetan</h3>
+    <form>
+        <p>Ondorengoetatik aukeratu formatu bat</p>
+        <input onclick="ariketa3_funtzioa()" type="radio" name="formatua" id="formatua1" value="formatua1">
+        <label for="formatua1">----/--/--(Urtea/hilabetea/eguna)</label><br>
+        <input onclick="ariketa3_funtzioa()" type="radio" name="formatua" id="formatua2" value="formatua2">
+        <label for="formatua2">****-eko ****** *a(Hilabetea-eko hilabetea eguna-a)</label><br>
+        <input onclick="ariketa3_funtzioa()" type="radio" name="formatua" id="formatua3" value="formatua3">
+        <label for="formatua3">****-eko eguna. hilabetea</label><br>
+    </form>
+    <div id="erantzuna3"></div>
 
     <script src="ariketa.js"></script>
 </body>

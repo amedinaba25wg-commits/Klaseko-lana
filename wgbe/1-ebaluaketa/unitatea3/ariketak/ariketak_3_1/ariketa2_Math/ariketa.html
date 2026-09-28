@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1>Ariketa 2</h1></center>
+    <h2>Enuntziatua</h2>
+    <ul>
+        <li>
+            Erabiltzaileari menu  bat agertuko zaio, eta aukeratu duen aukeraren arabera, honakoa egin beharko du.
+            <ol>
+                <li>Potentzia: 2 zenbaki eskatuko ditu, oinarria eta berretzailea, eta zenbaki horren emaitza emango du.</li>
+                <li>Erro karratua: zenbaki bakarra eskatuko du, eta zenbaki horren erro karratua itzuliko du.</li>
+                <li>Biribilketa: Erabiltzaileak bi zenbaki sartu beharko ditu. Lehenengoa hamartarrak (nahi aina) dituen zenbaki bat izango da, eta bigarrena zenbaki hori zenbat  hamartarretara biribildu nahi duen.</li>
+                <li>Trigonometria: Erabiltzaileari angelu bat eskatuko zaio (0 eta 360 artean),  eta sinu, kosinu eta tangentea itzuliko du programak.</li>
+            </ol>
+        </li>
+        <li>
+            Erabiltzaileari radio bat sartzeko eskatuko zaio, eta horrekin ondorengoa kalkulatuko da:
+            <ul>
+                <li>Diametroa</li>
+                <li>Zirkunferentzia</li>
+                <li>Azalera</li>
+                <li>Bolumena</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>Erantzuna</h2>
+    <h3>Menua</h3>
+    <form>
+        <button type="button" id="potentzia" onclick="potentziaKalkulatu()">1. Potentzia</button>
+        <button type="button" id="erroa" onclick="erroKarratua()">2. Erro karratua</button>
+        <button type="button" id="biribilketa" onclick="biribildu()">3. Biribilketa</button>
+        <button type="button" id="trigonometria" onclick="trigonometria()">4. Trigonometria</button>
+    </form>
+    <div id="erantzuna1"></div>
+    <h3>Erradioarekin kalkuluak egin</h3>
+    <form>
+        r: <input type="number" id="erradioa">
+        <button type="button" id="erradioaBotoia" onclick="erradioaFuntzioa()">Kalkulatu</button>
+    </form>
+    <div id="erantzuna2"></div>
+    <script src="ariketa.js"></script>
+</body>
+</html>

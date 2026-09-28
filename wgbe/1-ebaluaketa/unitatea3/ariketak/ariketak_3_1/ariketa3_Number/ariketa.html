@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ariketak 3 Number</title>
+</head>
+<body>
+    <center><h1>Ariketa 3 Number</h1></center>
+    <h2>Enuntziatua</h2>
+    <ul><li>Zenbaki bat eskatzen du, eta ondorengoa itzultzen du:
+        <ul>
+            <li>e ber zenbakia</li>
+            <li>Berbera, 4 dezimalekin</li>
+        </ul>
+        </li>
+        <li>Erabiltzaileari 3 zenbaki sartzeko eskatuko zaio: lehena Bitarrean, bigarrena Oktalean eta hirugarrena Hexadezimalean. Programak haundiena eta txikiena zein dan azaldu beharko du. 3 zenbakiak inprimatuz 3 formatuetan.</li>
+        <li>Pasahitzaren formatua egokia den balidatu behar da:
+            <ul>
+                <li>8 eta 16 karaktere artean</li>
+                <li>Gutxienez letra larri eta txiki bat</li>
+                <li>Gutxienez zenbaki bat</li>
+                <li>Karaktere berezi bat: gidoi altua, baxua, arroba, traol, dolarra, ehunekoa edo ampersand.</li>
+            </ul>
+        </li>
+    </ul>
+    <h2>Erantzunak</h2>
+    <h3>e zenbakiaren berreketa</h3>
+    <form>
+        Zenbakia: <input type="number" id="zenbakiaBerretzaile" name="zenbakiaBerretzaile">
+        <button type="button" onclick="berretzaileak()">Kalkulatu</button>
+    </form>
+    <div id="erantzuna1"></div>
+    <h3>Zenbaki formatu ezberdinetan konparatu</h3>
+    <form>
+        Zenbakia bitarrean: <input type="text" id="bitarra"><br>
+        Zenbakia Oktalean: <input type="text" id="oktala"><br>
+        Zenbakia hexadezimala: #<input type="text" id="hexadezimala"><br>
+        <button type="button" onclick="zenbakiSistemak()">Konparatu</button>
+    </form>
+    <div id="erantzuna2"></div>
+    <h3>Pasahitzaren formatua</h3>
+    <form>
+        Sartu pasahitza: <input type="password" id="pasahitza"><br>
+        <div id="erantzuna3"></div>
+        <button type="button" onclick="baieztatu()";>Baieztatu</button>
+    </form>
+
+    <script src="ariketa.js"></script>
+</body>
+</html>
