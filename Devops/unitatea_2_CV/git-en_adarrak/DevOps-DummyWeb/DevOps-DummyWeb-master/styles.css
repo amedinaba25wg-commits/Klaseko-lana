@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+
+/* CABECERA */
+
+header {
+    background-color: #1677a8;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+header h1 {
+    margin-bottom: 10px;
+}
+
+
+/* MENÚ */
+
+nav {
+    background-color: #333;
+}
+
+nav ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+nav a:hover {
+    background-color: #555;
+}
+
+
+/* CONTENIDO PRINCIPAL */
+
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+
+/* SECCIONES */
+
+section {
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 25px;
+}
+
+section h2 {
+    margin-bottom: 15px;
+}
+
+
+/* SECCIÓN PRINCIPAL */
+
+.principal {
+    text-align: center;
+}
+
+.principal img {
+    width: 100%;
+    max-width: 700px;
+    margin: 15px 0;
+}
+
+
+/* CURSOS */
+
+.contenido article {
+    background-color: #eeeeee;
+    margin: 15px 0;
+    padding: 15px;
+}
+
+.contenido article h3 {
+    margin-bottom: 10px;
+}
+
+
+/* PIE DE PÁGINA */
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
