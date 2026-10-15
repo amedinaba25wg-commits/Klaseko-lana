@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bideojokoak</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Bideojokoak</h1>
+
+  <section>
+    <h2>Iragazi</h2>
+    <input type="text" id="filter" placeholder="Bilatu izenaren arabera...">
+  </section>
+
+  <section>
+    <h2>Ordenatu</h2>
+    <button id="sortTitle">Izenaren arabera</button>
+    <button id="sortGenre">Generoaren arabera</button>
+    <button id="sortPrice">Prezioaren arabera</button>
+  </section>
+
+  <section>
+    <h2>Arraya biratu</h2>
+    <button id="rotateLeft">Ezkerra biratu</button>
+    <button id="rotateRight">Eskuina biratu</button>
+  </section>
+
+  <section>
+    <h2>Joko berria gehitu</h2>
+    <form id="addForm">
+      <input type="text" id="newTitle" placeholder="Izena" required>
+      <input type="number" id="newPrice" placeholder="Prezioa" min="0" step="0.01" required>
+      <input type="text" id="newGenre" placeholder="Generoa" required>
+      <button type="submit">Gehitu</button>
+    </form>
+  </section>
+
+  <table id="gamesTable"></table>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

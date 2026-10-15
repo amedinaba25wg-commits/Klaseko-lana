@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="eu">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <meta name="description" content="JavaScript-eko array-ak, funtzioak eta objektuak ikasi, kode-adibide interaktiboen bidez.">
+    <title>JavaScript laborategia · Array-ak, funtzioak eta objektuak</title>
+    <script>
+      (() => {
+        let theme;
+        try {
+          theme = localStorage.getItem("kodea-theme");
+        } catch {
+          theme = null;
+        }
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Ikastaroaren nabigazioa">
+        <a class="brand" href="#hasiera" aria-label="JavaScript laborategia, hasiera">
+          <span class="brand-mark" aria-hidden="true">{ }</span>
+          <span class="brand-copy">
+            <strong>kodea<span class="brand-dot">.</span></strong>
+            <small>JavaScript laborategia</small>
+          </span>
+        </a>
+
+        <div class="course-label">IKASKUNTZA IBILBIDEA <span>15 GAI</span></div>
+        <nav class="page-nav" aria-label="Gaiak">
+          <a class="nav-link is-active" href="#hasiera" data-page-link="hasiera">
+            <span class="nav-number">00</span><span>Ikuspegi orokorra</span>
+          </a>
+          <span class="nav-group-label">ARRAY-AK</span>
+          <a class="nav-link" href="#array-oinarriak" data-page-link="array-oinarriak"><span class="nav-number">01</span><span>Array-ak eta indizeak</span></a>
+          <a class="nav-link" href="#array-aldatu" data-page-link="array-aldatu"><span class="nav-number">02</span><span>Elementuak aldatu</span></a>
+          <a class="nav-link" href="#array-berriak" data-page-link="array-berriak"><span class="nav-number">03</span><span>Array berriak sortu</span></a>
+          <a class="nav-link" href="#array-bilatu" data-page-link="array-bilatu"><span class="nav-number">04</span><span>Bilatu eta egiaztatu</span></a>
+          <a class="nav-link" href="#array-zeharkatu" data-page-link="array-zeharkatu"><span class="nav-number">05</span><span>Zeharkatu eta ordenatu</span></a>
+          <span class="nav-group-label">FUNTZIOAK</span>
+          <a class="nav-link" href="#funtzio-parametroak" data-page-link="funtzio-parametroak"><span class="nav-number">01</span><span>Parametroak eta argumentuak</span></a>
+          <a class="nav-link" href="#funtzio-argumentuak" data-page-link="funtzio-argumentuak"><span class="nav-number">02</span><span>arguments eta rest</span></a>
+          <a class="nav-link" href="#funtzio-callbackak" data-page-link="funtzio-callbackak"><span class="nav-number">03</span><span>Funtzioak eta callback-ak</span></a>
+          <a class="nav-link" href="#funtzio-arrow" data-page-link="funtzio-arrow"><span class="nav-number">04</span><span>Arrow functions</span></a>
+          <a class="nav-link" href="#funtzio-arrayak" data-page-link="funtzio-arrayak"><span class="nav-number">05</span><span>Arrow-ak eta array-ak</span></a>
+          <span class="nav-group-label">OBJEKTUAK</span>
+          <a class="nav-link" href="#oinarriak" data-page-link="oinarriak"><span class="nav-number">01</span><span>Objektu bat sortzea</span></a>
+          <a class="nav-link" href="#propietateak" data-page-link="propietateak"><span class="nav-number">02</span><span>Propietateak</span></a>
+          <a class="nav-link" href="#aztertu" data-page-link="aztertu"><span class="nav-number">03</span><span>Object.keys() eta gehiago</span></a>
+          <a class="nav-link" href="#metodoak" data-page-link="metodoak"><span class="nav-number">04</span><span>Metodoak</span></a>
+          <a class="nav-link" href="#arrayak" data-page-link="arrayak"><span class="nav-number">05</span><span>Objektuak array batean</span></a>
+        </nav>
+
+        <div class="sidebar-note">
+          <span class="note-icon" aria-hidden="true">✳</span>
+          <p>Ikasi probatuz.<br><strong>Probatu, aldatu, ulertu.</strong></p>
+        </div>
+        <div class="sidebar-footer"><span class="status-dot"></span> Zure nabigatzailean exekutatzen da</div>
+      </aside>
+
+      <main class="main-area">
+        <header class="topbar">
+          <button class="menu-button" type="button" aria-label="Menua ireki" aria-expanded="false">
+            <span></span><span></span>
+          </button>
+          <div class="breadcrumb"><span>JavaScript oinarriak</span><span class="crumb-separator">/</span><strong id="current-crumb">Ikuspegi orokorra</strong></div>
+          <div class="topbar-actions">
+            <div class="topbar-meta"><span class="live-dot"></span> Ikaskuntza interaktiboa</div>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Aktibatu modu iluna" aria-pressed="false" title="Aktibatu modu iluna"><span data-theme-icon aria-hidden="true">☾</span><span class="theme-toggle-label">Modu iluna</span></button>
+          </div>
+        </header>
+
+        <div class="content-wrap">
+          <section class="page is-visible" id="hasiera" data-page="hasiera">
+            <div class="eyebrow"><span class="eyebrow-line"></span> GAIA 04 <span class="eyebrow-muted">· 8 MIN</span></div>
+            <div class="intro-grid">
+              <div class="intro-copy">
+                <h1>JavaScript,<br><span>gertutik.</span></h1>
+                <p class="lead">Ikasi array-ak, funtzioak eta objektuak erabiltzen: idatzi kodea zuzenean, exekutatu eta ikusi zer gertatzen den.</p>
+                <a class="button button-primary" href="#array-oinarriak" data-page-link="array-oinarriak">Hasi ikasten <span aria-hidden="true">↗</span></a>
+              </div>
+              <div class="hero-art" aria-label="JavaScript objektu baten kode-ilustrazioa" role="img">
+                <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+                <div class="art-card">
+                  <div class="art-card-top"><span class="window-dots"><i></i><i></i><i></i></span><span>pertsona.js</span><span class="js-badge">JS</span></div>
+                  <pre><code><span class="code-purple">const</span> pertsona = {
+  <span class="code-blue">izena</span>: <span class="code-green">"Ane"</span>,
+  <span class="code-blue">adina</span>: <span class="code-orange">20</span>,
+  <span class="code-blue">hiria</span>: <span class="code-green">"Bilbo"</span>
+};</code></pre>
+                  <div class="art-card-foot"><span class="live-dot"></span> Objektu literala</div>
+                </div>
+                <span class="float-tag tag-one">izena <b>·</b> "Ane"</span>
+                <span class="float-tag tag-two">adina <b>·</b> 20</span>
+                <span class="art-spark">✳</span>
+              </div>
+            </div>
+
+            <div class="section-heading overview-heading">
+              <div><span class="section-kicker">IKASTAROAREN IBILBIDEA</span><h2>Hiru gai, pausoz pauso.</h2></div>
+              <span class="progress-label">15 ikasgai</span>
+            </div>
+            <div class="section-heading category-heading"><div><span class="section-kicker">LEHEN GAIA</span><h2>Array-ak</h2></div><span class="progress-label">5 ikasgai</span></div>
+            <div class="path-grid category-path-grid">
+              <a class="path-card" href="#array-oinarriak" data-page-link="array-oinarriak"><span class="path-index">01</span><span class="path-icon">[ ]</span><strong>Array-ak eta indizeak</strong><small>Ordena, indizea eta luzera</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#array-aldatu" data-page-link="array-aldatu"><span class="path-index">02</span><span class="path-icon">↔</span><strong>Elementuak aldatu</strong><small>push, pop, splice...</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#array-berriak" data-page-link="array-berriak"><span class="path-index">03</span><span class="path-icon">⤴</span><strong>Array berriak sortu</strong><small>slice, map eta filter</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#array-bilatu" data-page-link="array-bilatu"><span class="path-index">04</span><span class="path-icon">⌕</span><strong>Bilatu eta egiaztatu</strong><small>find, includes, some...</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#array-zeharkatu" data-page-link="array-zeharkatu"><span class="path-index">05</span><span class="path-icon">↻</span><strong>Zeharkatu eta ordenatu</strong><small>forEach, join, sort...</small><span class="path-arrow">↗</span></a>
+              <a class="path-card path-card-summary" href="#array-oinarriak" data-page-link="array-oinarriak"><span class="path-index">★</span><span class="path-icon">✓</span><strong>Array laborategia</strong><small>Adibideak kodez probatu</small><span class="path-arrow">↗</span></a>
+            </div>
+            <div class="section-heading category-heading"><div><span class="section-kicker">BIGARREN GAIA</span><h2>Funtzioak</h2></div><span class="progress-label">5 ikasgai</span></div>
+            <div class="path-grid category-path-grid">
+              <a class="path-card" href="#funtzio-parametroak" data-page-link="funtzio-parametroak"><span class="path-index">01</span><span class="path-icon">ƒ</span><strong>Parametroak eta argumentuak</strong><small>Balioak bidali eta lehenetsi</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#funtzio-argumentuak" data-page-link="funtzio-argumentuak"><span class="path-index">02</span><span class="path-icon">...</span><strong>arguments eta rest</strong><small>Argumentu kopuru aldakorra</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#funtzio-callbackak" data-page-link="funtzio-callbackak"><span class="path-index">03</span><span class="path-icon">↗</span><strong>Callback-ak</strong><small>Funtzioak balio gisa pasatu</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#funtzio-arrow" data-page-link="funtzio-arrow"><span class="path-index">04</span><span class="path-icon">→</span><strong>Arrow functions</strong><small>Sintaxi laburra eta itzulera</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#funtzio-arrayak" data-page-link="funtzio-arrayak"><span class="path-index">05</span><span class="path-icon">[ƒ]</span><strong>Arrow-ak eta array-ak</strong><small>map, filter eta forEach</small><span class="path-arrow">↗</span></a>
+              <a class="path-card path-card-summary" href="#funtzio-parametroak" data-page-link="funtzio-parametroak"><span class="path-index">★</span><span class="path-icon">✓</span><strong>Funtzio laborategia</strong><small>Adibideak kodez probatu</small><span class="path-arrow">↗</span></a>
+            </div>
+            <div class="section-heading category-heading"><div><span class="section-kicker">HIRUGARREN GAIA</span><h2>Objektuak</h2></div><span class="progress-label">5 ikasgai</span></div>
+            <div class="path-grid category-path-grid">
+              <a class="path-card" href="#oinarriak" data-page-link="oinarriak"><span class="path-index">01</span><span class="path-icon">{ }</span><strong>Sortu objektua</strong><small>Objektu literala ulertu</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#propietateak" data-page-link="propietateak"><span class="path-index">02</span><span class="path-icon">⌘</span><strong>Erabili propietateak</strong><small>Irakurri, aldatu eta gehitu</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#aztertu" data-page-link="aztertu"><span class="path-index">03</span><span class="path-icon">⌕</span><strong>Aztertu objektua</strong><small>keys, values eta entries</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#metodoak" data-page-link="metodoak"><span class="path-index">04</span><span class="path-icon">ƒ</span><strong>Gehitu metodoak</strong><small>Objektuaren funtzioak</small><span class="path-arrow">↗</span></a>
+              <a class="path-card" href="#arrayak" data-page-link="arrayak"><span class="path-index">05</span><span class="path-icon">[ ]</span><strong>Objektuak array batean</strong><small>Objektu-zerrendak zeharkatu</small><span class="path-arrow">↗</span></a>
+              <a class="path-card path-card-summary" href="#array-oinarriak" data-page-link="array-oinarriak"><span class="path-index">★</span><span class="path-icon">✓</span><strong>Ikasten hasi</strong><small>Hasi lehen gaiarekin</small><span class="path-arrow">↗</span></a>
+            </div>
+            <div class="bottom-note"><span>✳</span><p>Adibide bakoitza zurea da: <strong>editatu kodea eta exekutatu</strong> emaitza ikusteko.</p><a href="#array-oinarriak" data-page-link="array-oinarriak">Lehen ikasgaia →</a></div>
+          </section>
+
+          <section class="page" id="funtzio-parametroak" data-page="funtzio-parametroak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> FUNTZIOAK · 01 <span class="eyebrow-muted">· PARAMETROAK</span></div>
+            <div class="page-title-row"><div><h1>Parametroak eta argumentuak<span class="title-dot">.</span></h1><p class="lead">Parametroak funtzioaren definizioan izendatzen ditugu; argumentuak, berriz, funtzioa deitzean bidaltzen ditugun balioak dira.</p></div><span class="page-count">01 <i>/</i> 05</span></div>
+            <div class="function-lesson-layout">
+              <article class="lesson-copy"><span class="lesson-icon">ƒ</span><h2>Definitu eta deitu.</h2><p><code>a</code> eta <code>b</code> parametroak dira. <code>batu(5, 3)</code> deian, 5 eta 3 argumentuak dira.</p><div class="tip-box"><span>💡</span><p>JavaScript-ek ez du eskatzen parametro guztiak betetzea. Argumenturik gabe, balioa <code>undefined</code> da.</p></div></article>
+              <div class="code-workbench" data-code-workbench>
+                <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>parametroak.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+                <label class="sr-only" for="function-params-editor">Parametroen eta argumentuen JavaScript adibidea</label><textarea class="code-editor" id="function-params-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">function batu(a, b) {
+  return a + b;
+}
+
+console.log("Parametrodun deia:", batu(5, 3));
+console.log("Bigarren argumenturik gabe:", batu(5));</textarea>
+                <div class="editor-toolbar"><span>Probatu argumentu gutxiago bidaltzen: falta den parametroa undefined izango da.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+                <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+              </div>
+            </div>
+            <div class="default-parameter-section">
+              <div class="default-parameter-copy"><span class="section-kicker">BALIO LEHENETSIAK</span><h2>Parametro bati hasierako balioa eman.</h2><p>Esleitu balio bat parametroa definitzean. Argumenturik bidaltzen ez bada, parametroak balio lehenetsia hartuko du.</p></div>
+              <div class="code-workbench" data-code-workbench>
+                <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>default-parameters.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+                <label class="sr-only" for="function-default-editor">Balio lehenetsien JavaScript adibidea</label><textarea class="code-editor" id="function-default-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">function agurtu(izena = "Ikaslea") {
+  console.log("Kaixo " + izena);
+}
+
+agurtu("Ane");
+agurtu();
+agurtu(undefined);
+agurtu(null);</textarea>
+                <div class="editor-toolbar"><span>Aldatu "Ikaslea" balio lehenetsia, eta alderatu deien emaitzak.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+                <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+              </div>
+              <div class="tip-box default-parameter-tip"><span>ℹ</span><p>Balio lehenetsia erabiltzen da argumentua falta denean edo <code>undefined</code> denean. <code>null</code> balioak ez du lehenetsia aktibatzen.</p></div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">01</span><p><strong>Parametroa:</strong> funtzioak espero duen izena. <strong>Argumentua:</strong> deian pasatzen den balioa. Balio lehenetsiak falta den argumentua ordezkatzen du.</p></div>
+            <div class="page-footer"><a class="text-link" href="#array-zeharkatu" data-page-link="array-zeharkatu">← Array-ak</a><a class="button button-primary" href="#funtzio-argumentuak" data-page-link="funtzio-argumentuak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="funtzio-argumentuak" data-page="funtzio-argumentuak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> FUNTZIOAK · 02 <span class="eyebrow-muted">· ARGUMENTU KOPURU ALDAKORRA</span></div>
+            <div class="page-title-row"><div><h1>arguments eta ...rest<span class="title-dot">.</span></h1><p class="lead">Funtzioak parametro deklaratuak baino argumentu gehiago jaso ditzake. Erabili <code>arguments</code> edo <code>...rest</code> gainontzekoekin lan egiteko.</p></div><span class="page-count">02 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol">A</span><code>arguments</code><span class="method-tag">FUNTZIO ARRUNTA</span></div><p>Argumentu guztiak kontsultatu daitezke, parametroetan jaso ez direnak barne. Ez dago arrow function-etan erabilgarri.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="arguments objektuaren adibidea">function erakutsi(a, b) {
+  console.log("a:", a);
+  console.log("b:", b);
+  console.log("hirugarrena:", arguments[2]);
+  console.log("Argumentu kopurua:", arguments.length);
+}
+
+erakutsi(10, 20, 30, 40);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">...</span><code>...rest</code><span class="method-tag">Gainerakoak ARRAY BATEAN</span></div><p><code>...rest</code> azken parametroa da eta argumentu soberakin guztiak array batean jasotzen ditu.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="Rest parametroaren adibidea">function erakutsi(a, b, ...rest) {
+  console.log("a:", a);
+  console.log("b:", b);
+  console.log("rest:", rest);
+  console.log("rest[0]:", rest[0]);
+}
+
+erakutsi(10, 20, 30, 40, 50);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card inspect-card-wide code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">Σ</span><code>...zenbakiak</code><span class="method-tag">ADIBIDE PRAKTIKOA</span></div><p>Rest parametroa array bat denez, begiztarekin zeharkatu eta nahi adina zenbaki batu ditzakegu.</p><textarea class="code-editor small-code-editor entries-editor" data-code-editor spellcheck="false" aria-label="Rest bidez zenbakiak batzeko adibidea">function batu(...zenbakiak) {
+  let emaitza = 0;
+  for (let zenbaki of zenbakiak) {
+    emaitza += zenbaki;
+  }
+  return emaitza;
+}
+
+console.log(batu(2, 3));
+console.log(batu(2, 3, 4, 5));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="concept-strip"><span class="strip-number">02</span><p><code>arguments</code> objektua funtzio arruntetan erabil daiteke. <code>...rest</code> benetako array bat da eta azken parametroa izan behar du.</p></div>
+            <div class="page-footer"><a class="text-link" href="#funtzio-parametroak" data-page-link="funtzio-parametroak">← Aurrekoa</a><a class="button button-primary" href="#funtzio-callbackak" data-page-link="funtzio-callbackak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="funtzio-callbackak" data-page="funtzio-callbackak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> FUNTZIOAK · 03 <span class="eyebrow-muted">· FUNTZIOAK BALIO GISA</span></div>
+            <div class="page-title-row"><div><h1>Funtzioak eta callback-ak<span class="title-dot">.</span></h1><p class="lead">JavaScript-en funtzioak balioak dira: aldagai batean gorde eta beste funtzio bati argumentu gisa pasa diezazkiokegu.</p></div><span class="page-count">03 <i>/</i> 05</span></div>
+            <div class="lesson-layout function-lesson-layout">
+              <article class="lesson-copy"><span class="lesson-icon">↗</span><h2>Funtzioa pasatu,<br><em>ez exekutatu.</em></h2><p><code>exekutatu(agurtu)</code>-n funtzioa bera pasatzen da. <code>exekutatu(agurtu())</code>-n, berriz, berehala exekutatzen da, eta emaitza pasatzen da.</p><div class="tip-box"><span>↳</span><p>Beste funtzio bati argumentu gisa pasatzen zaion funtzioari <strong>callback</strong> deritzo.</p></div></article>
+              <div class="code-workbench" data-code-workbench>
+                <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>callback.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+                <label class="sr-only" for="function-callback-editor">Callback funtzioaren JavaScript adibidea</label><textarea class="code-editor" id="function-callback-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">function agurtu() {
+  console.log("Kaixo!");
+}
+
+function exekutatu(funtzioa) {
+  funtzioa();
+}
+
+exekutatu(agurtu);
+
+const frutas = ["sagarra", "madaria", "platanoa"];
+frutas.forEach(function(fruta) {
+  console.log("Fruta:", fruta);
+});</textarea>
+                <div class="editor-toolbar"><span>Sortu beste funtzio bat, eta pasa ezazu callback gisa.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+                <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+              </div>
+            </div>
+            <div class="comparison-strip"><div><span>exekutatu(agurtu)</span><strong>Funtzioa pasatzen du</strong></div><span class="comparison-divider"></span><div><span>exekutatu(agurtu())</span><strong>Funtzioa berehala deitzen du</strong></div></div>
+            <div class="concept-strip"><span class="strip-number">03</span><p><code>forEach()</code>, <code>map()</code>, <code>filter()</code> eta <code>sort()</code>-ek callback funtzioak jasotzen dituzte.</p></div>
+            <div class="page-footer"><a class="text-link" href="#funtzio-argumentuak" data-page-link="funtzio-argumentuak">← Aurrekoa</a><a class="button button-primary" href="#funtzio-arrow" data-page-link="funtzio-arrow">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="funtzio-arrow" data-page="funtzio-arrow" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> FUNTZIOAK · 04 <span class="eyebrow-muted">· ARROW FUNCTIONS</span></div>
+            <div class="page-title-row"><div><h1>Arrow function-ak<span class="title-dot">.</span></h1><p class="lead">Arrow function-ek funtzioak idazteko sintaxi laburragoa ematen dute. Bereziki erabilgarriak dira funtzio txikietan eta callback-etan.</p></div><span class="page-count">04 <i>/</i> 05</span></div>
+            <div class="code-workbench" data-code-workbench>
+              <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>arrow-functions.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+              <label class="sr-only" for="function-arrow-editor">Arrow function-en sintaxia erakusten duen kodea</label><textarea class="code-editor" id="function-arrow-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">function batuOhikoa(a, b) {
+  return a + b;
+}
+
+const batu = (a, b) => {
+  return a + b;
+};
+
+const batuLaburra = (a, b) => a + b;
+const bikoiztu = a => a * 2;
+const agurtu = () => console.log("Kaixo!");
+
+console.log(batuOhikoa(5, 3));
+console.log(batu(5, 3));
+console.log(batuLaburra(5, 3));
+console.log(bikoiztu(4));
+agurtu();</textarea>
+              <div class="editor-toolbar"><span>Parentesiak bakarrik kendu daitezke parametro bakarra dagoenean.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+              <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+            </div>
+            <div class="summary-section"><div class="section-kicker">ARROW SINTAXIA</div><h2>Parametro kopuruaren arabera.</h2>
+              <div class="method-card-grid syntax-card-grid">
+                <article class="inspect-card"><strong class="syntax-title">Parametro bat baino gehiago</strong><code class="syntax-example">(a, b) =&gt; a + b</code></article>
+                <article class="inspect-card"><strong class="syntax-title">Parametro bakarra</strong><code class="syntax-example">a =&gt; a * 2</code></article>
+                <article class="inspect-card"><strong class="syntax-title">Parametrorik ez</strong><code class="syntax-example">() =&gt; console.log("Kaixo")</code></article>
+                <article class="inspect-card"><strong class="syntax-title">Itzulera zuzena</strong><code class="syntax-example">(a, b) =&gt; a + b</code></article>
+              </div>
+            </div>
+            <div class="tip-box function-note"><span>ℹ</span><p><code>const</code> ohikoa da arrow function-ak gordetzeko, baina funtzio deklarazio arrunta ere beste funtzio bati pasa dakioke. Arrow function-ek ez dute beren <code>arguments</code> objekturik.</p></div>
+            <div class="page-footer"><a class="text-link" href="#funtzio-callbackak" data-page-link="funtzio-callbackak">← Aurrekoa</a><a class="button button-primary" href="#funtzio-arrayak" data-page-link="funtzio-arrayak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="funtzio-arrayak" data-page="funtzio-arrayak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> FUNTZIOAK · 05 <span class="eyebrow-muted">· ARROW + ARRAY-AK</span></div>
+            <div class="page-title-row"><div><h1>Funtzioak array-etan<span class="title-dot">.</span></h1><p class="lead"><code>map()</code>, <code>filter()</code> eta <code>forEach()</code> callback-etarako erabil daitezke. Arrow function-ek kodea laburtzen dute, metodo bakoitzaren helburua aldatu gabe.</p></div><span class="page-count">05 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol">M</span><code>map()</code><span class="method-tag">ERALDATU</span></div><p>Arrow callback-ak elementu bakoitza bikoizten du; emaitza array berri batean jasotzen da.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="map eta arrow function adibidea">const zenbakiak = [1, 2, 3, 4];
+const bikoiztuak = zenbakiak.map(zenbakia => zenbakia * 2);
+console.log(bikoiztuak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">F</span><code>filter()</code><span class="method-tag">AUKERATU</span></div><p>Arrow callback-ak baldintza adierazten du; baldintza betetzen duten elementuak bakarrik geratzen dira.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="filter eta arrow function adibidea">const zenbakiak = [1, 2, 3, 4, 5];
+const handiak = zenbakiak.filter(zenbakia => zenbakia > 3);
+console.log(handiak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card inspect-card-wide code-inspect-card function-code-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">↻</span><code>forEach()</code><span class="method-tag">EKINTZA BAT ELEMENTU BAKOITZEKO</span></div><p>Arrow callback-ak elementu bakoitzaren izena idazten du. forEach-ek ez du array berririk itzultzen.</p><textarea class="code-editor small-code-editor entries-editor" data-code-editor spellcheck="false" aria-label="forEach eta arrow function adibidea">const izenak = ["Ane", "Jon", "Maite"];
+izenak.forEach(izena => {
+  console.log("Kaixo " + izena);
+});</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="comparison-strip"><div><span>map()</span><strong>Elementu bakoitza eraldatu, array berria sortu</strong></div><span class="comparison-divider"></span><div><span>forEach()</span><strong>Ekintza egin elementu bakoitzeko</strong></div></div>
+            <div class="summary-section"><div class="section-kicker">LABURPENA</div><h2>Funtzioen ideia nagusiak.</h2>
+              <div class="summary-table">
+                <div class="summary-row summary-head"><span>KONTZEPTUA</span><span>ADIBIDEA</span><span>ZER EGITEN DU?</span></div>
+                <div class="summary-row"><strong>Parametroa / argumentua</strong><code>function batu(a); batu(5)</code><span>Definizioan / deian jasotako datua</span></div>
+                <div class="summary-row"><strong>Default parameter</strong><code>izena = "Ikaslea"</code><span>Argumenturik ez denean, balio lehenetsia</span></div>
+                <div class="summary-row"><strong>arguments</strong><code>arguments[0] / .length</code><span>Funtzio arrunteko argumentu guztiak</span></div>
+                <div class="summary-row"><strong>Rest parametroa</strong><code>function batu(...zenbakiak)</code><span>Gainerako argumentuak array batean</span></div>
+                <div class="summary-row"><strong>Callback</strong><code>array.map(funtzioa)</code><span>Beste funtzio bati pasatutako funtzioa</span></div>
+                <div class="summary-row"><strong>Arrow / implicit return</strong><code>(a, b) =&gt; a + b</code><span>Funtzio laburra eta emaitza zuzenean itzuli</span></div>
+              </div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">05</span><p>Arrow function-ak bereziki erabilgarriak dira <strong>callback txikietan</strong>: funtzio bat balio gisa pasa, eta array-en metodoek deitzen dute.</p></div>
+            <div class="page-footer"><a class="text-link" href="#funtzio-arrow" data-page-link="funtzio-arrow">← Aurrekoa</a><a class="button button-primary" href="#oinarriak" data-page-link="oinarriak">Jarraitu: Objektuak <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="oinarriak" data-page="oinarriak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 01 <span class="eyebrow-muted">· OBJEKTU LITERALAK</span></div>
+            <div class="page-title-row"><div><h1>Sortu objektua<span class="title-dot">.</span></h1><p class="lead">Propietateak giltza-balio bikoteak dira. Objektua sortzeko, jarri giltzak <code>{ }</code> artean.</p></div><span class="page-count">01 <i>/</i> 05</span></div>
+            <div class="lesson-layout">
+              <article class="lesson-copy"><span class="lesson-icon">{ }</span><h2>Ez da <em>class</em>-ik behar.</h2><p id="lesson-copy">Idatzi edo aldatu kodea zuzenean. Exekutatu botoiarekin, eta emaitza kontsolan ikusiko duzu.</p><div class="tip-box"><span>💡</span><p>Probatu izena, adina edo hiria aldatzen. Erabili <code>console.log()</code> emaitza ikusteko.</p></div></article>
+              <div class="code-workbench" data-code-workbench>
+                <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>pertsona.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+                <label class="sr-only" for="object-editor">Objektua sortzeko JavaScript kodea</label>
+                <textarea class="code-editor" id="object-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off" aria-describedby="editor-hint-object">const pertsona = {
+  izena: "Ane",
+  adina: 20,
+  hiria: "Bilbo"
+};
+
+console.log(pertsona);</textarea>
+                <div class="editor-toolbar"><span id="editor-hint-object">Editatu kodea. Erabili Tab koska sartzeko edo Ctrl + Enter exekutatzeko.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+                <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+              </div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">01</span><p><strong>Objektu literala</strong> da objektua zuzenean sortzeko sintaxia.</p><code>const pertsona = { izena: "Ane" };</code></div>
+            <div class="page-footer"><a class="text-link" href="#funtzio-arrayak" data-page-link="funtzio-arrayak">← Funtzioak</a><a class="button button-primary" href="#propietateak" data-page-link="propietateak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="propietateak" data-page="propietateak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 02 <span class="eyebrow-muted">· IRAKURRI ETA ALDATU</span></div>
+            <div class="page-title-row"><div><h1>Propietateak<span class="title-dot">.</span></h1><p class="lead">Puntu-notazioa edo kortxeteak erabil ditzakezu balioak irakurtzeko. Objektuak aldatu eta hazi ere egin daitezke.</p></div><span class="page-count">02 <i>/</i> 05</span></div>
+            <div class="code-workbench" data-code-workbench>
+              <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>propietateak.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+              <label class="sr-only" for="properties-editor">Propietateak irakurri eta aldatzeko JavaScript kodea</label>
+              <textarea class="code-editor" id="properties-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">const pertsona = {
+  izena: "Ane",
+  adina: 20
+};
+
+console.log(pertsona.izena);
+console.log(pertsona["adina"]);
+
+pertsona.adina = 21;
+pertsona.emaila = "ane@gmail.com";
+console.log(pertsona);
+
+delete pertsona.adina;
+console.log(pertsona);</textarea>
+              <div class="editor-toolbar"><span>Editatu kodea eta exekutatu emaitzak ikusteko.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+              <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">02</span><p><strong>Objektuak dinamikoak dira:</strong> propietateak alda, gehi eta ezaba ditzakezu.</p><code>pertsona.adina = 21;</code></div>
+            <div class="page-footer"><a class="text-link" href="#oinarriak" data-page-link="oinarriak">← Aurrekoa</a><a class="button button-primary" href="#aztertu" data-page-link="aztertu">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="aztertu" data-page="aztertu" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 03 <span class="eyebrow-muted">· OBJECT.METODOAK</span></div>
+            <div class="page-title-row"><div><h1>Aztertu objektua<span class="title-dot">.</span></h1><p class="lead"><code>Object.keys()</code>, <code>Object.values()</code> eta <code>Object.entries()</code> erabilita, objektuaren edukia azkar ikus dezakezu.</p></div><span class="page-count">03 <i>/</i> 05</span></div>
+            <div class="inspect-intro"><div class="inspect-icon">⌕</div><p>Aldatu objektua eta exekutatu adibide bakoitza. Erabili <code>console.log()</code> balioak kontsolan ikusteko.</p></div>
+            <div class="inspect-grid">
+              <article class="inspect-card code-inspect-card"><div class="inspect-card-head"><span class="method-symbol">K</span><code>Object.keys()</code><span class="method-tag">GAKOAK</span></div><p>Editatu adibidea eta exekutatu.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="Object.keys adibidea">const pertsona = { izena: "Ane", adina: 20, hiria: "Bilbo" };
+console.log(Object.keys(pertsona));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">V</span><code>Object.values()</code><span class="method-tag">BALIOAK</span></div><p>Editatu adibidea eta exekutatu.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="Object.values adibidea">const pertsona = { izena: "Ane", adina: 20, hiria: "Bilbo" };
+console.log(Object.values(pertsona));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card inspect-card-wide code-inspect-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">E</span><code>Object.entries()</code><span class="method-tag">GAKOA + BALIOA</span></div><p>Editatu adibidea eta exekutatu.</p><textarea class="code-editor small-code-editor entries-editor" data-code-editor spellcheck="false" aria-label="Object.entries adibidea">const pertsona = { izena: "Ane", adina: 20, hiria: "Bilbo" };
+console.log(Object.entries(pertsona));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="concept-strip"><span class="strip-number">03</span><p>Hiru metodoek <strong>array bat</strong> itzultzen dute. Oso erabilgarriak dira objektuak aztertzeko.</p><code>Object.keys(pertsona);</code></div>
+            <div class="page-footer"><a class="text-link" href="#propietateak" data-page-link="propietateak">← Aurrekoa</a><a class="button button-primary" href="#metodoak" data-page-link="metodoak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="metodoak" data-page="metodoak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 04 <span class="eyebrow-muted">· OBJEKTUAK ETA FUNTZIOAK</span></div>
+            <div class="page-title-row"><div><h1>Objektuaren metodoak<span class="title-dot">.</span></h1><p class="lead">Objektu baten barruan dagoen funtzio bati metodoa esaten zaio. Deitu objektuaren izena eta metodoaren izena erabiliz.</p></div><span class="page-count">04 <i>/</i> 05</span></div>
+            <div class="method-layout">
+              <div class="method-explainer"><div class="method-icon">ƒ</div><h2>Objektua + funtzioa<br>= <em>metodoa</em></h2><p>Editatu metodoaren kodea eta exekutatu. Metodoak agurra idatziko du kontsolan.</p><div class="tip-box"><span>↳</span><p>Bi sintaxiak baliokideak dira: <code>agurtu: function() { }</code> eta <code>agurtu() { }</code></p></div></div>
+              <div class="code-workbench method-lab" data-code-workbench><div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>metodoa.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+                <label class="sr-only" for="method-editor">Objektuaren metodoaren JavaScript kodea</label><textarea class="code-editor" id="method-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">const pertsona = {
+  izena: "Ane",
+  agurtu() {
+    console.log("Kaixo, " + this.izena + "!");
+  }
+};
+
+pertsona.agurtu();</textarea>
+                <div class="editor-toolbar"><span>Editatu kodea eta exekutatu metodoa.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+                <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+              </div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">04</span><p>Objektuaren propietate bat funtzioa denean, objektuaren <strong>metodoa</strong> da.</p><code>pertsona.agurtu();</code></div>
+            <div class="page-footer"><a class="text-link" href="#aztertu" data-page-link="aztertu">← Aurrekoa</a><a class="button button-primary" href="#arrayak" data-page-link="arrayak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="arrayak" data-page="arrayak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> 05 <span class="eyebrow-muted">· OBJEKTU-ZERRENDAK</span></div>
+            <div class="page-title-row"><div><h1>Objektuak array batean<span class="title-dot">.</span></h1><p class="lead">Ohikoa da datu-zerrenda bat objektuen bidez gordetzea. Editatu array-a eta begizta kodean, eta exekutatu emaitza ikusteko.</p></div><span class="page-count">05 <i>/</i> 05</span></div>
+            <div class="code-workbench" data-code-workbench>
+              <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>ikasleak.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+              <label class="sr-only" for="array-editor">Objektu-arrayaren eta for...of begiztaren JavaScript kodea</label><textarea class="code-editor" id="array-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">const ikasleak = [
+  { izena: "Ane", nota: 8 },
+  { izena: "Jon", nota: 6 },
+  { izena: "Maite", nota: 9 }
+];
+
+console.log(ikasleak[0].izena);
+
+for (let ikasle of ikasleak) {
+  console.log(ikasle.izena);
+}</textarea>
+              <div class="editor-toolbar"><span>Editatu array-a edo begizta; exekutatu kodea.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+              <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">05</span><p><strong>Array + objektuak</strong> erabilita, erraz antola daitezke antzeko erregistro asko.</p><code>ikasleak[0].izena;</code></div>
+            <div class="summary-section"><div class="section-kicker">LABURPENA</div><h2>Gogoratu beharrekoa.</h2>
+              <div class="summary-table"><div class="summary-row summary-head"><span>KONTZEPTUA</span><span>ADIBIDEA</span><span>ZER EGITEN DU?</span></div>
+                <div class="summary-row"><strong>Objektua sortu</strong><code>{ izena: "Ane" }</code><span>Objektua zuzenean sortzen du</span></div>
+                <div class="summary-row"><strong>Propietatea irakurri</strong><code>pertsona.izena</code><span>Balioa lortzen du</span></div>
+                <div class="summary-row"><strong>Propietatea gehitu</strong><code>pertsona.emaila = "..."</code><span>Propietate berria sortzen du</span></div>
+                <div class="summary-row"><strong>Propietatea ezabatu</strong><code>delete pertsona.adina</code><span>Propietatea kentzen du</span></div>
+                <div class="summary-row"><strong>Object.keys()</strong><code>Object.keys(pertsona)</code><span>Propietate-izenak itzultzen ditu</span></div>
+                <div class="summary-row"><strong>Metodoa</strong><code>pertsona.agurtu()</code><span>Objektu barruko funtzioa deitzen du</span></div>
+              </div>
+            </div>
+            <div class="completion-banner"><span class="completion-star">✳</span><div><strong>Primeran. Zuk zeuk probatu duzu.</strong><p>Orain prest zaude JavaScript-eko objektuak zure proiektuetan erabiltzeko.</p></div><a href="#hasiera" data-page-link="hasiera">Hasierara itzuli ↑</a></div>
+            <div class="page-footer"><a class="text-link" href="#metodoak" data-page-link="metodoak">← Aurrekoa</a><a class="button button-secondary" href="#hasiera" data-page-link="hasiera">Hasierara</a></div>
+          </section>
+
+          <section class="page" id="array-oinarriak" data-page="array-oinarriak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ARRAY-AK · 01 <span class="eyebrow-muted">· OINARRIAK</span></div>
+            <div class="page-title-row"><div><h1>Array-ak eta indizeak<span class="title-dot">.</span></h1><p class="lead">Array bat hainbat balio ordenatuta gordetzeko datu-egitura da. Elementu bakoitzak posizio bat edo indize bat dauka, 0tik hasita.</p></div><span class="page-count">01 <i>/</i> 05</span></div>
+            <div class="code-workbench" data-code-workbench>
+              <div class="playground-head"><div><span class="window-dots"><i></i><i></i><i></i></span><strong>arrayak.js</strong></div><span class="editable-label"><i></i> ZURE KODEA</span></div>
+              <label class="sr-only" for="array-basics-editor">Array-ak eta indizeak erakusten dituen JavaScript kodea</label><textarea class="code-editor" id="array-basics-editor" data-code-editor spellcheck="false" autocapitalize="off" autocomplete="off">const frutas = ["sagarra", "madaria", "platanoa"];
+
+console.log(frutas[0]);
+console.log(frutas[1]);
+console.log(frutas[2]);
+console.log("Elementu kopurua:", frutas.length);
+console.log("Indizerik ez:", frutas[3]);</textarea>
+              <div class="editor-toolbar"><span>Probatu indizeak edo aldatu array-aren elementuak.</span><button class="button button-primary" type="button" data-run-code>Exekutatu <span>▶</span></button></div>
+              <div class="console-panel"><div class="console-heading"><span class="live-dot"></span><strong>Kontsola</strong><span data-run-status>Zain</span></div><pre class="console-output" data-code-output aria-live="polite">Exekutatu kodea emaitza ikusteko.</pre></div>
+            </div>
+            <div class="summary-section"><div class="section-kicker">METODOEN SAILKAPENA</div><h2>Zer gertatzen da jatorrizko array-arekin?</h2>
+              <div class="summary-table array-summary-table">
+                <div class="summary-row summary-head"><span>TALDEA</span><span>METODOAK</span><span>EMAITZA</span></div>
+                <div class="summary-row"><strong>Jatorrizkoa aldatzen dute</strong><code>push, pop, shift, unshift, splice, sort, reverse</code><span>Array bera aldatzen dute</span></div>
+                <div class="summary-row"><strong>Array berria sortzen dute</strong><code>map, filter, slice</code><span>Jatorrizkoa bere horretan uzten dute</span></div>
+                <div class="summary-row"><strong>Bilatu edo egiaztatu</strong><code>find, findIndex, includes, indexOf, some, every</code><span>Elementua, indizea edo boolean bat</span></div>
+                <div class="summary-row"><strong>Zeharkatu edo bihurtu</strong><code>forEach, join</code><span>Ekintza bat edo testu bat</span></div>
+              </div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">01</span><p>Array-en indizea <strong>0tik hasten da</strong>; array-aren luzera <code>frutas.length</code> da.</p><code>frutas[0]; // "sagarra"</code></div>
+            <div class="page-footer"><a class="text-link" href="#arrayak" data-page-link="arrayak">← Objektuak eta array-ak</a><a class="button button-primary" href="#array-aldatu" data-page-link="array-aldatu">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="array-aldatu" data-page="array-aldatu" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ARRAY-AK · 02 <span class="eyebrow-muted">· JATORRIZKOA ALDATU</span></div>
+            <div class="page-title-row"><div><h1>Gehitu eta kendu<span class="title-dot">.</span></h1><p class="lead">Metodo hauek jatorrizko array-a aldatzen dute. Exekutatu adibideak, eta alderatu metodoaren itzulera array-aren azken edukiarekin.</p></div><span class="page-count">02 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">+</span><code>push()</code><span class="method-tag">AMAIERAN GEHITU</span></div><p>Gehitu elementu bat edo gehiago amaieran. Itzultzen du: array-aren luzera berria.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="push adibidea">const frutas = ["sagarra", "madaria"];
+const luzera = frutas.push("platanoa", "kiwia");
+console.log("Luzera:", luzera);
+console.log(frutas);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">−</span><code>pop()</code><span class="method-tag">AMAIERATIK KENDU</span></div><p>Azken elementua kentzen du. Itzultzen du: kendutako elementua.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="pop adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+const fruta = frutas.pop();
+console.log("Kendutakoa:", fruta);
+console.log("Geratzen dira:", frutas);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">↑</span><code>unshift()</code><span class="method-tag">HASIERAN GEHITU</span></div><p>Gehitu elementu bat edo gehiago hasieran. Itzultzen du: array-aren luzera berria.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="unshift adibidea">const frutas = ["madaria", "platanoa"];
+const luzera = frutas.unshift("sagarra");
+console.log("Luzera:", luzera);
+console.log(frutas);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">↓</span><code>shift()</code><span class="method-tag">HASIERATIK KENDU</span></div><p>Lehen elementua kentzen du. Itzultzen du: kendutako elementua.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="shift adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+const fruta = frutas.shift();
+console.log("Kendutakoa:", fruta);
+console.log("Geratzen dira:", frutas);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card inspect-card-wide code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">↔</span><code>splice()</code><span class="method-tag">EZABATU · GEHITU · ORDEZKATU</span></div><p><code>splice(hasiera, ezabatuKopurua, elementua1, ...)</code> array-a aldatzen du, eta ezabatutako elementuak array batean itzultzen ditu.</p><textarea class="code-editor small-code-editor entries-editor" data-code-editor spellcheck="false" aria-label="splice adibidea">const frutas = ["sagarra", "madaria", "platanoa", "kiwia"];
+const ezabatuak = frutas.splice(1, 2, "laranja");
+console.log("Ezabatutakoak:", ezabatuak);
+console.log("Array berria:", frutas);
+
+const besteFrutak = ["sagarra", "platanoa"];
+besteFrutak.splice(1, 0, "madaria");
+console.log("Gehitu, ezabatu gabe:", besteFrutak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="concept-strip"><span class="strip-number">02</span><p><strong>push/pop</strong> amaieran aritzen dira; <strong>unshift/shift</strong> hasieran. <code>splice()</code> edozein posiziotan erabil daiteke.</p></div>
+            <div class="page-footer"><a class="text-link" href="#array-oinarriak" data-page-link="array-oinarriak">← Aurrekoa</a><a class="button button-primary" href="#array-berriak" data-page-link="array-berriak">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="array-berriak" data-page="array-berriak" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ARRAY-AK · 03 <span class="eyebrow-muted">· ARRAY BERRIAK</span></div>
+            <div class="page-title-row"><div><h1>Eraldatu eta aukeratu<span class="title-dot">.</span></h1><p class="lead"><code>slice()</code>, <code>map()</code> eta <code>filter()</code>-ek array berri bat sortzen dute, eta jatorrizkoa ez dute aldatzen.</p></div><span class="page-count">03 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">S</span><code>slice()</code><span class="method-tag">ZATI BAT KOPIATU</span></div><p><code>slice(hasiera, amaiera)</code>: amaiera-indizea ez da sartzen.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="slice adibidea">const frutas = ["sagarra", "madaria", "platanoa", "kiwia"];
+const batzuk = frutas.slice(1, 3);
+console.log("Kopia:", batzuk);
+console.log("Jatorrizkoa:", frutas);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">M</span><code>map()</code><span class="method-tag">ELEMENTUAK ERALDATU</span></div><p>Elementu bakoitza eraldatu eta emaitza bakoitza array berri batean sartzen du.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="map adibidea">const prezioak = [10, 20, 30];
+const bikoiztuak = prezioak.map(prezioa => prezioa * 2);
+console.log("Emaitza:", bikoiztuak);
+console.log("Jatorrizkoa:", prezioak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">F</span><code>filter()</code><span class="method-tag">BALDINTZAZ AUKERATU</span></div><p>Baldintza betetzen duten elementuak bakarrik uzten ditu array berrian.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="filter adibidea">const adinak = [12, 18, 25, 15, 30];
+const helduak = adinak.filter(adina => adina >= 18);
+console.log("Helduak:", helduak);
+console.log("Jatorrizkoa:", adinak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">↗</span><code>filter() + map()</code><span class="method-tag">KATEATU</span></div><p>Iragazi lehenik, eta eraldatu ondoren.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="map eta filter kateatze adibidea">const prezioak = [10, 20, 30, 40];
+const zergadunak = prezioak
+  .filter(prezioa => prezioa >= 20)
+  .map(prezioa => prezioa * 1.21);
+
+console.log(zergadunak);
+console.log("Jatorrizkoa:", prezioak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="comparison-strip"><div><span>map()</span><strong>Elementu guztiak eraldatu</strong></div><span class="comparison-divider"></span><div><span>filter()</span><strong>Baldintza betetzen dutenak aukeratu</strong></div></div>
+            <div class="concept-strip"><span class="strip-number">03</span><p>Array berria erabilita, emaitzak sortu ditzakezu jatorrizko datuak <strong>ukitu gabe</strong>.</p></div>
+            <div class="page-footer"><a class="text-link" href="#array-aldatu" data-page-link="array-aldatu">← Aurrekoa</a><a class="button button-primary" href="#array-bilatu" data-page-link="array-bilatu">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="array-bilatu" data-page="array-bilatu" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ARRAY-AK · 04 <span class="eyebrow-muted">· BILATU ETA EGIAZTATU</span></div>
+            <div class="page-title-row"><div><h1>Bilatu eta egiaztatu<span class="title-dot">.</span></h1><p class="lead">Lehen elementua edo haren indizea bilatu, elementu bat dagoen egiaztatu, edo baldintza array osoari aplikatu.</p></div><span class="page-count">04 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">F</span><code>find()</code><span class="method-tag">LEHEN ELEMENTUA</span></div><p>Baldintza betetzen duen lehen elementua itzultzen du; aurkitzen ez badu, <code>undefined</code>.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="find adibidea">const erabiltzaileak = [
+  { id: 1, izena: "Ane" },
+  { id: 2, izena: "Jon" },
+  { id: 3, izena: "Mikel" }
+];
+const erabiltzailea = erabiltzaileak.find(e => e.id === 2);
+console.log(erabiltzailea);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">#</span><code>findIndex()</code><span class="method-tag">LEHEN INDIZEA</span></div><p>Baldintza betetzen duen lehen elementuaren indizea itzultzen du; bestela, <code>-1</code>.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="findIndex adibidea">const erabiltzaileak = [
+  { id: 1, izena: "Ane" },
+  { id: 2, izena: "Jon" },
+  { id: 3, izena: "Mikel" }
+];
+console.log(erabiltzaileak.findIndex(e => e.id === 2));
+console.log(erabiltzaileak.findIndex(e => e.id === 9));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">?</span><code>includes()</code><span class="method-tag">BADAGO?</span></div><p>Balio bat array-an dagoen egiaztatzen du; <code>true</code> edo <code>false</code>.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="includes adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+console.log(frutas.includes("madaria"));
+console.log(frutas.includes("kiwia"));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">#</span><code>indexOf()</code><span class="method-tag">POSIZIOA</span></div><p>Balioaren lehen indizea itzultzen du; aurkitzen ez badu, <code>-1</code>.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="indexOf adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+console.log(frutas.indexOf("madaria"));
+console.log(frutas.indexOf("kiwia"));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">1+</span><code>some()</code><span class="method-tag">BAT BATEK?</span></div><p>Gutxienez elementu batek baldintza betetzen duen aztertzen du.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="some adibidea">const adinak = [12, 15, 17, 20];
+const helduakDaude = adinak.some(adina => adina >= 18);
+console.log(helduakDaude);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">✓</span><code>every()</code><span class="method-tag">GUZTIEK?</span></div><p>Elementu guztiek baldintza betetzen duten aztertzen du.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="every adibidea">const adinak = [20, 25, 30];
+const guztiakHelduak = adinak.every(adina => adina >= 18);
+console.log(guztiakHelduak);
+
+const adinNahasiak = [20, 15, 30];
+console.log(adinNahasiak.every(adina => adina >= 18));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="concept-strip"><span class="strip-number">04</span><p><strong>find()</strong> elementua ematen du; <strong>findIndex() / indexOf()</strong> posizioa; <strong>some() / every()</strong> balio boolearra.</p></div>
+            <div class="page-footer"><a class="text-link" href="#array-berriak" data-page-link="array-berriak">← Aurrekoa</a><a class="button button-primary" href="#array-zeharkatu" data-page-link="array-zeharkatu">Jarraitu <span>→</span></a></div>
+          </section>
+
+          <section class="page" id="array-zeharkatu" data-page="array-zeharkatu" hidden>
+            <div class="eyebrow"><span class="eyebrow-line"></span> ARRAY-AK · 05 <span class="eyebrow-muted">· ZEHARKATU ETA ORDENATU</span></div>
+            <div class="page-title-row"><div><h1>Errepikatu eta ordenatu<span class="title-dot">.</span></h1><p class="lead"><code>forEach()</code>-ek elementu bakoitzeko ekintza bat egiten du; <code>join()</code>-ek testu bihurtzen du; <code>sort()</code> eta <code>reverse()</code>-ek array-a aldatzen dute.</p></div><span class="page-count">05 <i>/</i> 05</span></div>
+            <div class="method-card-grid">
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">↻</span><code>forEach()</code></div><p>Array bateko elementu guztiak zeharkatu eta bakoitzarentzat kodea exekutatzen du. Ez du array berririk itzultzen.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="forEach adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+frutas.forEach(fruta => {
+  console.log(fruta);
+});
+
+const emaitza = frutas.forEach(fruta => fruta);
+console.log("forEach-en emaitza:", emaitza);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol values-symbol">↔</span><code>join()</code><span class="method-tag">STRING BATERA</span></div><p>Array-eko elementuak testu bakarrean elkartzen ditu; banatzailea aukerakoa da.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="join adibidea">const frutas = ["sagarra", "madaria", "platanoa"];
+console.log(frutas.join(", "));
+
+const hitzak = ["Kaixo", "mundua"];
+console.log(hitzak.join(" "));</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol">A→Z</span><code>sort()</code><span class="method-tag">ORDENATU</span></div><p>Lehenespenez, testu gisa ordenatzen du. Zenbakietarako konparatzaile-funtzioa erabili.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="sort adibidea">const izenak = ["Mikel", "Ane", "Jon"];
+izenak.sort();
+console.log(izenak);
+
+const zenbakiak = [10, 2, 30, 5];
+zenbakiak.sort((a, b) => a - b);
+console.log("Txikitik handira:", zenbakiak);
+zenbakiak.sort((a, b) => b - a);
+console.log("Handitik txikira:", zenbakiak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+              <article class="inspect-card code-inspect-card array-method-card"><div class="inspect-card-head"><span class="method-symbol entries-symbol">↕</span><code>reverse()</code><span class="method-tag">ORDENA ALDERANTZIKATU</span></div><p>Array-aren ordena alderantzikatzen du, eta jatorrizkoa aldatzen du.</p><textarea class="code-editor small-code-editor" data-code-editor spellcheck="false" aria-label="reverse adibidea">const zenbakiak = [1, 2, 3, 4];
+zenbakiak.reverse();
+console.log(zenbakiak);</textarea><button class="button button-secondary run-small-code" type="button" data-run-code>Exekutatu ▶</button><pre class="console-output small-console" data-code-output aria-live="polite">Emaitza hemen.</pre></article>
+            </div>
+            <div class="comparison-strip"><div><span>map()</span><strong>Array berri bat itzultzen du</strong></div><span class="comparison-divider"></span><div><span>forEach()</span><strong>Ekintza bat egiten du; undefined itzultzen du</strong></div></div>
+            <div class="summary-section"><div class="section-kicker">METODOEN LABURPENA</div><h2>Erabaki zer egin nahi duzun.</h2>
+              <div class="summary-table array-summary-table">
+                <div class="summary-row summary-head"><span>HELBURUA</span><span>METODOA</span><span>ZER EGITEN DU?</span></div>
+                <div class="summary-row"><strong>Elementu bat gehitu</strong><code>push()</code><span>Array-aren amaieran gehitzen du</span></div>
+                <div class="summary-row"><strong>Elementu bat kendu</strong><code>pop() / shift()</code><span>Azkena / lehenengoa kentzen du</span></div>
+                <div class="summary-row"><strong>Elementuak ordezkatu</strong><code>splice()</code><span>Ezabatu, gehitu edo ordezkatzen du</span></div>
+                <div class="summary-row"><strong>Elementu guztiak eraldatu</strong><code>map()</code><span>Array berri bat sortzen du</span></div>
+                <div class="summary-row"><strong>Batzuk aukeratu</strong><code>filter()</code><span>Baldintza betetzen dutenak gordetzen ditu</span></div>
+                <div class="summary-row"><strong>Elementu bat bilatu</strong><code>find()</code><span>Lehen elementua itzultzen du</span></div>
+                <div class="summary-row"><strong>Bat badago egiaztatu</strong><code>some()</code><span>Gutxienez bat betetzen bada, true</span></div>
+                <div class="summary-row"><strong>Guztiek betetzen dute?</strong><code>every()</code><span>Guztiek betetzen badute, true</span></div>
+                <div class="summary-row"><strong>Elementu bakoitzarekin jardun</strong><code>forEach()</code><span>Array-a zeharkatzen du</span></div>
+                <div class="summary-row"><strong>Testu bihurtu</strong><code>join()</code><span>String bakar bat sortzen du</span></div>
+                <div class="summary-row"><strong>Ordenatu / alderantzikatu</strong><code>sort() / reverse()</code><span>Jatorrizko array-a aldatzen dute</span></div>
+              </div>
+            </div>
+            <div class="concept-strip"><span class="strip-number">05</span><p>Galdetu zeure buruari: <strong>zer egin nahi dut?</strong> eta <strong>jatorrizko array-a aldatu nahi dut?</strong></p></div>
+            <div class="page-footer"><a class="text-link" href="#array-bilatu" data-page-link="array-bilatu">← Aurrekoa</a><a class="button button-primary" href="#funtzio-parametroak" data-page-link="funtzio-parametroak">Jarraitu: Funtzioak <span>→</span></a></div>
+          </section>
+
+          <footer class="site-footer"><span>kodea<span class="brand-dot">.</span> <span>· JavaScript ikasteko laborategia</span></span><span>Eraiki jakin-minez <b>✳</b></span></footer>
+        </div>
+        <iframe id="code-runner" title="JavaScript code execution sandbox" sandbox="allow-scripts" aria-hidden="true" hidden></iframe>
+      </main>
+    </div>
+  </body>
+</html>
