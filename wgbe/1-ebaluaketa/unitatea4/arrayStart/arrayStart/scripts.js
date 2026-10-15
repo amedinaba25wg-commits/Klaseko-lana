@@ -33,7 +33,7 @@ const filterInput = document.getElementById("filter");
  */
 function calculatePricesWithVAT(list) {
   //Aldatu
-  return new Array(16).fill(0);
+  return list.map(e => (e.bezarekin = e.price * (1 + VAT)));
 }
 
 /**
@@ -94,7 +94,9 @@ function createTable(list) {
  */
 function getVisibleGames() {
   //aldatu
-  return games;
+  let inSearchCell = document.getElementById("filter").value;
+  let gamesFiltered = games.filter(e => ((e.title.search(new RegExp(inSearchCell, "i")) != -1)));
+  return gamesFiltered;
 }
 
 /**
@@ -114,6 +116,12 @@ function refresh() {
  */
 function deleteGame(game) {
   //Osatu
+  let index = games.indexOf(game);
+  if(index != -1) {
+    let previousOfIndex = games.slice(0, index);
+    let afterIndex = games.slice(++index);
+    games = previousOfIndex.concat(afterIndex);
+  }
   refresh();
 }
 
@@ -124,6 +132,8 @@ function deleteGame(game) {
  */
 function addGame(game) {
   //Osatu
+  games.push(game);
+
   refresh();
 }
 
@@ -135,7 +145,15 @@ function addGame(game) {
  * Array metodoak: sort (games array bera aldatzen du).
  */
 function sortBy(field) {
-  //Osatu
+  if(field == 'title') {
+    games.sort(function(a, b){if(a.title > b.title){return 1}else return -1});
+  }
+  else if (field == 'genre') {
+    games.sort(function(a, b){if(a.genre > b.genre){return 1}else return -1});
+  }
+  else {
+    games.sort(function(a, b){ return a.price - b.price});
+  }
   refresh();
 }
 
@@ -147,6 +165,10 @@ function sortBy(field) {
  */
 function rotateLeft() {
   //Osatu
+  if(games.length != 0) {
+    let game = games.shift();
+    addGame(game);
+  }
   refresh();
 }
 
@@ -158,6 +180,11 @@ function rotateLeft() {
  */
 function rotateRight() {
   //Osatu
+  if(games.length != 0) {
+    let game = games.pop();
+   games.unshift(game);
+  }
+
   refresh();
 }
 
@@ -180,3 +207,4 @@ document.getElementById("addForm").addEventListener("submit", (event) => {
 });
 
 refresh();
+
