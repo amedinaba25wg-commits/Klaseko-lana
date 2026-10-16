@@ -7,11 +7,11 @@ const ikasleak = {
 const ikasleKopurua = ikasleak.izenak.length;
 
 /*
- * ikasleak objektuko datuekin HTML taula sortu eta orrian erakusten du. [v]
- * Argumentuak: ez du argumenturik. [v]
- * Itzulera: ez du baliorik itzultzen (undefined). [v]
- * Erabilitako metodoak: Object.keys() eta document.querySelector(). [v]
- * ezabatuZutabea() deitzen duten botoiak sortu behar ditu [v]
+ * ikasleak objektuko datuekin HTML taula sortu eta orrian erakusten du. 
+ * Argumentuak: ez du argumenturik.
+ * Itzulera: ez du baliorik itzultzen (undefined).
+ * Erabilitako metodoak: Object.keys() eta document.querySelector().
+ * ezabatuZutabea() deitzen duten botoiak sortu behar ditu 
  */
 function sortuTaula() {
   let html = '<table style="border: solid black 1px"><tbody><tr>';
@@ -33,10 +33,10 @@ function sortuTaula() {
 }
 
 /*
- * Emandako zutabea ikasleak objektutik ezabatu eta taula berriz sortzen du. [v]
- * Argumentuak: zutabea (ezabatu beharreko propietatearen izena). [v]
- * Itzulera: ez du baliorik itzultzen (undefined). [v]
- * Erabilitako metodoak: delete [v]
+ * Emandako zutabea ikasleak objektutik ezabatu eta taula berriz sortzen du.
+ * Argumentuak: zutabea (ezabatu beharreko propietatearen izena).
+ * Itzulera: ez du baliorik itzultzen (undefined).
+ * Erabilitako metodoak: delete 
  */
 function ezabatuZutabea(zutabea) {
   // Osatu
@@ -45,11 +45,11 @@ function ezabatuZutabea(zutabea) {
 }
 
 /*
- * Erabiltzaileak idatzitako izenarekin zutabe berri bat gehitzen du, [v]
- * array huts batekin, eta taula berriz sortzen du. [v]
- * Argumentuak: ez du argumenturik. [v]
- * Itzulera: false (inprimakiak orria berriz kargatzea saihesteko). [v]
- * Erabilitako metodoak: document.querySelector() [v]
+ * Erabiltzaileak idatzitako izenarekin zutabe berri bat gehitzen du, 
+ * array huts batekin, eta taula berriz sortzen du. 
+ * Argumentuak: ez du argumenturik. 
+ * Itzulera: false (inprimakiak orria berriz kargatzea saihesteko). 
+ * Erabilitako metodoak: document.querySelector() 
  */
 function gehituZutabea() {
   const input = document.querySelector("#column-name");
