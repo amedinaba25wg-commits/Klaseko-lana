@@ -7,11 +7,11 @@ const ikasleak = {
 const ikasleKopurua = ikasleak.izenak.length;
 
 /*
- * ikasleak objektuko datuekin HTML taula sortu eta orrian erakusten du. []
+ * ikasleak objektuko datuekin HTML taula sortu eta orrian erakusten du. [v]
  * Argumentuak: ez du argumenturik. [v]
  * Itzulera: ez du baliorik itzultzen (undefined). [v]
- * Erabilitako metodoak: Object.keys() eta document.querySelector().
- * ezabatuZutabea() deitzen duten botoiak sortu behar ditu
+ * Erabilitako metodoak: Object.keys() eta document.querySelector(). [v]
+ * ezabatuZutabea() deitzen duten botoiak sortu behar ditu [v]
  */
 function sortuTaula() {
   let html = '<table style="border: solid black 1px"><tbody><tr>';
@@ -26,7 +26,6 @@ function sortuTaula() {
       html += "<td>" + ikasleak[goiburuak[j]][i] + '</td>';
     }
   }
-  
   //Taularen informazioa osatzen du ikasle bakoitzaren datuekin
   html += "</tbody></table>";
   // Osatu taula ikasleak objektuko datuekin. Adibide gixa, taula.html
@@ -34,26 +33,29 @@ function sortuTaula() {
 }
 
 /*
- * Emandako zutabea ikasleak objektutik ezabatu eta taula berriz sortzen du.
- * Argumentuak: zutabea (ezabatu beharreko propietatearen izena).
- * Itzulera: ez du baliorik itzultzen (undefined).
- * Erabilitako metodoak: delete
+ * Emandako zutabea ikasleak objektutik ezabatu eta taula berriz sortzen du. [v]
+ * Argumentuak: zutabea (ezabatu beharreko propietatearen izena). [v]
+ * Itzulera: ez du baliorik itzultzen (undefined). [v]
+ * Erabilitako metodoak: delete [v]
  */
 function ezabatuZutabea(zutabea) {
   // Osatu
+  delete ikasleak[zutabea];
   sortuTaula();
 }
 
 /*
- * Erabiltzaileak idatzitako izenarekin zutabe berri bat gehitzen du,
- * array huts batekin, eta taula berriz sortzen du.
- * Argumentuak: ez du argumenturik.
- * Itzulera: false (inprimakiak orria berriz kargatzea saihesteko).
- * Erabilitako metodoak: document.querySelector()
+ * Erabiltzaileak idatzitako izenarekin zutabe berri bat gehitzen du, [v]
+ * array huts batekin, eta taula berriz sortzen du. [v]
+ * Argumentuak: ez du argumenturik. [v]
+ * Itzulera: false (inprimakiak orria berriz kargatzea saihesteko). [v]
+ * Erabilitako metodoak: document.querySelector() [v]
  */
 function gehituZutabea() {
   const input = document.querySelector("#column-name");
   const zutabea = input.value.trim();
+  ikasleak[zutabea] = [];
+
   // Osatu
   sortuTaula();
   return false;
