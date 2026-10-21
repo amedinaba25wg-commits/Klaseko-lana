@@ -12,12 +12,3 @@ let kodea = `<!DOCTYPE html>
 
 document.getElementById("kodea").textContent = kodea;
 
-// Erantzuna:
-const body1 = document.querySelector("body");
-body1.addEventListener("onclick", tamainaHanditu);
-
-function tamainaHanditu() {
-    let elementua = document.querySelector("p");
-    let tamaina = parseInt(getComputedStyle(elementua).fontSize);
-    elementua.style.fontSize = (tamaina + 2) + "px";
-}

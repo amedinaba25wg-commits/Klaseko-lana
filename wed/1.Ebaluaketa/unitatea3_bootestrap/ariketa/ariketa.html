@@ -5,26 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zubiri Manteo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-+FHgYHwFP35YMimWomFLZcAGsRahWd93p0l7kIHMy359OEVKlkK/Udju4/As/vPS" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-warning bg-gradient" style="max-width: 1640px;">
     <header class="row">
-        <h1 class="col">Zubiri manteo</h1>
+        <h1 class="col fg-emphasis-inverse">Zubiri manteo</h1>
         <div class="col"><img src="img/logo.png"/></div>
     </header>
     <nav>
-        <ul class="row col-6">
-            <li class="col"><a href="#">Inicio</a></li>
-            <li class="col"><a href="#">Quienes</a></li>
-            <li class="col"><a href="#">Cursos</a></li>
-            <li class="col"><a href="#">Situación</a></li>
-            <li class="col"><a href="#">Contacto</a></li>
+        <ul class="col-6 list-group list-group-horizontal list-unstyled">
+            <li class="col"><a href="#" class="text-secondary text-decoration-none">Inicio</a></li>
+            <li class="col"><a href="#" class="text-secondary text-decoration-none">Quienes</a></li>
+            <li class="col"><a href="#" class="text-secondary text-decoration-none">Cursos</a></li>
+            <li class="col"><a href="#" class="text-secondary text-decoration-none">Situación</a></li>
+            <li class="col"><a href="#" class="text-secondary text-decoration-none">Contacto</a></li>
         </ul>
     </nav>
     <div class="row">
         <div class="col">
-            <form>
+            <form class="d-flex flex-column">
                 <label for="nombre-apellidos">Nombre y apellidos</label>
-                <input type="text" placeholder="Nombre" id="nombre-apellidos">
+                <input type="text" placeholder="Nombre" id="nombre-apellidos" class="rounded-6">
                 <label for="comentario">Déjanos tu comentario</label>
                 <textarea id="comentario"></textarea>
                 <button type="submit">Enviar</button>
