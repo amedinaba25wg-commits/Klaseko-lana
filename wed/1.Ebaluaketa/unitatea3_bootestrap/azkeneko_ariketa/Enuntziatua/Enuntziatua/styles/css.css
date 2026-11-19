@@ -1,0 +1,64 @@
+/* Kolore paleta:
+   Berde iluna: #3E5151
+   Beige: #DECBA4
+   Berde argia: #789e9e
+*/
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.gradiente {
+    background: #3E5151;
+    background: linear-gradient(to right, #DECBA4, #3E5151);
+    min-height: 100vh;
+}
+
+.transparente {
+    background-color: transparent;
+}
+
+nav li a:hover {
+    background: #789e9e;
+    color: white;
+}
+
+.misBotones {
+    background: #3E5151;
+    color: white;
+}
+
+.misBotones:hover {
+    background: #DECBA4;
+    color: #3E5151;
+}
+
+#logo {
+    border: 1px solid black;
+    box-shadow: 7px 6px 5px 0px black;
+    border-radius: 100%;
+    background: url("../img/logo.svg") no-repeat;
+    background-size: 100% 100%;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.txartela {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.txartela:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption {
+    background: rgba(62, 81, 81, 0.6);
+    border-radius: 8px;
+}
+
+footer {
+    font-size: 1.1rem;
+}

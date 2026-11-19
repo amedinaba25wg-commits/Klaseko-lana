@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="eu">
+<head>
+    <meta charset="UTF-8">
+    <title>Mendizale Taldea</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/css.css">
+</head>
+<body class="gradiente d-flex flex-column align-items-center">
+
+    <header>
+        <h1>MENDIZALE TALDEA</h1>
+        <img src="img/logo.svg" alt="Mendizale Taldea" width="50" height="50">
+    </header>
+
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+            data-bs-target="#menua">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul id="menua">
+            <li><a href="#">Hasiera</a></li>
+            <li><a href="#ibilbideak">Ibilbideak</a></li>
+            <li>
+                <a href="#">Jarduerak</a>
+                <ul>
+                    <li><a href="#">Irteerak</a></li>
+                    <li><a href="#">Ikastaroak</a></li>
+                    <li><a href="#">Argazki lehiaketa</a></li>
+                </ul>
+            </li>
+            <li><a href="#faq">Galderak</a></li>
+            <li><a href="#kontaktua">Kontaktua</a></li>
+        </ul>
+    </nav>
+
+    <!-- Argazki jira: 3 irudi -->
+    <section id="carousel1" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+        <div class="carousel-item active">
+        <img src="img/hero1.svg" alt="Pirinioak" class="d-block w-100">
+        <h2>Pirinioak</h2>
+        <p>Udako irteera handia Pirinioetara.</p>
+        </div>
+        
+        <div class="carousel-item">
+        <img src="img/hero2.svg" alt="Aralar" class="d-block w-100">
+        <h2 class="d-none d-md-block">Aralar</h2>
+        <p class="d-none d-md-block">Larunbatero ibilaldiak Aralarren.</p>
+        </div>
+
+        <div class="carousel-item">
+        <img src="img/hero3.svg" alt="Gorbeia" class="d-block w-100">
+        <h2 class="d-none d-md-block" >Gorbeia</h2>
+        <p class="d-none d-md-block" >Neguko ibilaldia elurretan.</p>
+        </div>
+        </div>
+    </section>
+
+    <main>
+        <section id="ibilbideak">
+            <h2>Ibilbide nabarmenenak</h2>
+
+            <div>
+                <img src="img/ibilbide1.svg" alt="Anboto">
+                <h3>Anboto</h3>
+                <p>Euskal Herriko mendirik ikusgarrienetakoa. Zailtasuna: ertaina.</p>
+                <a href="#">Gehiago ikusi</a>
+            </div>
+            <div>
+                <img src="img/ibilbide2.svg" alt="Aizkorri">
+                <h3>Aizkorri</h3>
+                <p>Gipuzkoako mendirik garaiena. Zailtasuna: zaila.</p>
+                <a href="#">Gehiago ikusi</a>
+            </div>
+            <div>
+                <img src="img/ibilbide3.svg" alt="Txindoki">
+                <h3>Txindoki</h3>
+                <p>Aralarko erregina. Zailtasuna: erraza.</p>
+                <a href="#">Gehiago ikusi</a>
+            </div>
+        </section>
+
+        <section id="egutegia">
+            <h2>Hurrengo irteerak</h2>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>Mendia</th>
+                    <th>Data</th>
+                    <th>Zailtasuna</th>
+                    <th>Lekuak</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Anboto</td>
+                    <td>2026-11-07</td>
+                    <td>Ertaina</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Aizkorri</td>
+                    <td>2026-11-21</td>
+                    <td>Zaila</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Txindoki</td>
+                    <td>2026-12-05</td>
+                    <td>Erraza</td>
+                    <td>20</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Gorbeia</td>
+                    <td>2026-12-19</td>
+                    <td>Ertaina</td>
+                    <td>8</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="faq">
+            <h2>Ohiko galderak</h2>
+            <h3>Zer behar dut irteeretarako?</h3>
+            <p>Mendiko botak, ura, jatekoa eta euriko arropa.</p>
+            <h3>Bazkide izan behar dut?</h3>
+            <p>Ez, baina bazkideek deskontua dute.</p>
+            <h3>Zer gertatzen da euria egiten badu?</h3>
+            <p>Irteera atzeratu edo bertan behera utz daiteke.</p>
+        </section>
+
+        <section id="kontaktua">
+            <h2>Eman izena</h2>
+            <button>Izena eman</button>
+
+            <!-- Formularioa: leiho modal batean sartu behar da -->
+            <form>
+                <h3>Izen-emate formularioa</h3>
+                <label for="izena">Izena</label>
+                <input type="text" id="izena">
+
+                <label for="emaila">Posta elektronikoa</label>
+                <input type="text" id="emaila">
+
+                <label for="mendia">Mendia</label>
+                <select id="mendia">
+                    <option>Anboto</option>
+                    <option>Aizkorri</option>
+                    <option>Txindoki</option>
+                    <option>Gorbeia</option>
+                </select>
+
+                <p>Maila:</p>
+                <input type="radio" name="maila" id="m1"> <label for="m1">Hasiberria</label>
+                <input type="radio" name="maila" id="m2"> <label for="m2">Ertaina</label>
+                <input type="radio" name="maila" id="m3"> <label for="m3">Aurreratua</label>
+
+                <input type="checkbox" id="baldintzak"> <label for="baldintzak">Baldintzak onartzen ditut</label>
+
+                <button type="button">Bidali</button>
+                <button type="button">Itxi</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <h4>Mendizale Taldea</h4>
+            <p>Mendiaren zaleok elkartzen gara.</p>
+        </div>
+        <div>
+            <h4>Esteka azkarrak</h4>
+            <a href="#ibilbideak">Ibilbideak</a>
+            <a href="#faq">Galderak</a>
+            <a href="#kontaktua">Kontaktua</a>
+        </div>
+        <div>
+            <h4>Kontaktua</h4>
+            <p>info@mendizale.eus</p>
+            <p>+34 948 000 000</p>
+        </div>
+        <p>&copy; 2026 Mendizale Taldea</p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+</body>
+</html>
