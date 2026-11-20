@@ -13,12 +13,12 @@ function koloreaAldatu(event) {
 
     let distantzia = Math.min(ezkerra, eskuina, goia, behea);
 
-    let portzentajea = distantzia / Math.min(zabalera, altuera) * 100;
+    let ehunekoa = distantzia / Math.min(zabalera, altuera) * 100;
 
-    if (portzentajea <= 10) {
+    if (ehunekoa <= 10) {
         document.body.style.backgroundColor = "red";
     }
-    else if (portzentajea <= 20) {
+    else if (ehunekoa <= 20) {
         document.body.style.backgroundColor = "yellow";
     }
     else {
