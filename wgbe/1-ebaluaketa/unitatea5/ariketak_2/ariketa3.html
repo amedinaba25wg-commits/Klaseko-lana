@@ -21,7 +21,6 @@ span	{background-color:purple;border:2px solid red;}
 </div>
 <script>
     function koloreaAldatu(event) {
-        console.log("pultsatu da");
         let elementua1 = event.target;
         let aurrekoaBorder = false;
         while(!aurrekoaBorder) {
@@ -34,7 +33,6 @@ span	{background-color:purple;border:2px solid red;}
     }
     let elementuak = document.querySelectorAll("div, p");
     for(let elementua of elementuak) {
-        console.log("hello world");
         elementua.addEventListener("click", koloreaAldatu);
     }
 </script>
