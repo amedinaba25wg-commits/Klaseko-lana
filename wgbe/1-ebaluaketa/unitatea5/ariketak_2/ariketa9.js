@@ -2,6 +2,7 @@ const laukia = document.getElementById("laukizuzena");
 
 let x = window.innerWidth / 2 - 107; // Ajuste txiki bat bestela desplazatuta gelditzen da
 let y = window.innerHeight / 2 - 60; //Ajuste hori egin behar da laukiak azalera duelako orduan kentzen zaio zentratuta gelditzeko
+let pausoa = 10;
 function laukiaMugitu(event) {
     switch(event.key) {
         case "ArrowUp":
